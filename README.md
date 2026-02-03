@@ -49,6 +49,7 @@ Giúp LLM hiểu được **nội dung văn bản + ngữ cảnh hình ảnh** m
 ### 3️⃣ Xây dựng Frontend Chatbot
 
 Frontend được xây dựng bằng **HTML + CSS + JavaScript thuần**, không sử dụng framework.
+<img width="1914" height="954" alt="Screenshot 2026-02-03 142951" src="https://github.com/user-attachments/assets/16f115c5-cd58-419c-84c3-ed6f81be2fd3" />
 
 #### ✨ Tính năng chính
 
