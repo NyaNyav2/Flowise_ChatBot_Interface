@@ -1,0 +1,2031 @@
+{
+  "nodes": [
+    {
+      "id": "startAgentflow_0",
+      "type": "agentFlow",
+      "position": {
+        "x": -221.5,
+        "y": 95
+      },
+      "data": {
+        "id": "startAgentflow_0",
+        "label": "Start",
+        "version": 1.1,
+        "name": "startAgentflow",
+        "type": "Start",
+        "color": "#7EE787",
+        "hideInput": true,
+        "baseClasses": [
+          "Start"
+        ],
+        "category": "Agent Flows",
+        "description": "Starting point of the agentflow",
+        "inputParams": [
+          {
+            "label": "Input Type",
+            "name": "startInputType",
+            "type": "options",
+            "options": [
+              {
+                "label": "Chat Input",
+                "name": "chatInput",
+                "description": "Start the conversation with chat input"
+              },
+              {
+                "label": "Form Input",
+                "name": "formInput",
+                "description": "Start the workflow with form inputs"
+              }
+            ],
+            "default": "chatInput",
+            "id": "startAgentflow_0-input-startInputType-options",
+            "display": true
+          },
+          {
+            "label": "Form Title",
+            "name": "formTitle",
+            "type": "string",
+            "placeholder": "Please Fill Out The Form",
+            "show": {
+              "startInputType": "formInput"
+            },
+            "id": "startAgentflow_0-input-formTitle-string",
+            "display": false
+          },
+          {
+            "label": "Form Description",
+            "name": "formDescription",
+            "type": "string",
+            "placeholder": "Complete all fields below to continue",
+            "show": {
+              "startInputType": "formInput"
+            },
+            "id": "startAgentflow_0-input-formDescription-string",
+            "display": false
+          },
+          {
+            "label": "Form Input Types",
+            "name": "formInputTypes",
+            "description": "Specify the type of form input",
+            "type": "array",
+            "show": {
+              "startInputType": "formInput"
+            },
+            "array": [
+              {
+                "label": "Type",
+                "name": "type",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "String",
+                    "name": "string"
+                  },
+                  {
+                    "label": "Number",
+                    "name": "number"
+                  },
+                  {
+                    "label": "Boolean",
+                    "name": "boolean"
+                  },
+                  {
+                    "label": "Options",
+                    "name": "options"
+                  }
+                ],
+                "default": "string"
+              },
+              {
+                "label": "Label",
+                "name": "label",
+                "type": "string",
+                "placeholder": "Label for the input"
+              },
+              {
+                "label": "Variable Name",
+                "name": "name",
+                "type": "string",
+                "placeholder": "Variable name for the input (must be camel case)",
+                "description": "Variable name must be camel case. For example: firstName, lastName, etc."
+              },
+              {
+                "label": "Add Options",
+                "name": "addOptions",
+                "type": "array",
+                "show": {
+                  "formInputTypes[$index].type": "options"
+                },
+                "array": [
+                  {
+                    "label": "Option",
+                    "name": "option",
+                    "type": "string"
+                  }
+                ]
+              }
+            ],
+            "id": "startAgentflow_0-input-formInputTypes-array",
+            "display": false
+          },
+          {
+            "label": "Ephemeral Memory",
+            "name": "startEphemeralMemory",
+            "type": "boolean",
+            "description": "Start fresh for every execution without past chat history",
+            "optional": true,
+            "id": "startAgentflow_0-input-startEphemeralMemory-boolean",
+            "display": true
+          },
+          {
+            "label": "Flow State",
+            "name": "startState",
+            "description": "Runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "string",
+                "placeholder": "Foo"
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "placeholder": "Bar",
+                "optional": true
+              }
+            ],
+            "id": "startAgentflow_0-input-startState-array",
+            "display": true
+          },
+          {
+            "label": "Persist State",
+            "name": "startPersistState",
+            "type": "boolean",
+            "description": "Persist the state in the same session",
+            "optional": true,
+            "id": "startAgentflow_0-input-startPersistState-boolean",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "startInputType": "chatInput",
+          "formTitle": "",
+          "formDescription": "",
+          "formInputTypes": "",
+          "startEphemeralMemory": "",
+          "startState": [
+            {
+              "key": "output",
+              "value": ""
+            }
+          ],
+          "startPersistState": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "startAgentflow_0-output-startAgentflow",
+            "label": "Start",
+            "name": "startAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 103,
+      "height": 66,
+      "positionAbsolute": {
+        "x": -221.5,
+        "y": 95
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "agentAgentflow_0",
+      "position": {
+        "x": 298.1733790828993,
+        "y": 279.68266335608854
+      },
+      "data": {
+        "id": "agentAgentflow_0",
+        "label": "Cán bộ",
+        "version": 3.2,
+        "name": "agentAgentflow",
+        "type": "Agent",
+        "color": "#4DD0E1",
+        "baseClasses": [
+          "Agent"
+        ],
+        "category": "Agent Flows",
+        "description": "Dynamically choose and utilize tools during runtime, enabling multi-step reasoning",
+        "inputParams": [
+          {
+            "label": "Model",
+            "name": "agentModel",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "loadConfig": true,
+            "id": "agentAgentflow_0-input-agentModel-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Messages",
+            "name": "agentMessages",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Role",
+                "name": "role",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "System",
+                    "name": "system"
+                  },
+                  {
+                    "label": "Assistant",
+                    "name": "assistant"
+                  },
+                  {
+                    "label": "Developer",
+                    "name": "developer"
+                  },
+                  {
+                    "label": "User",
+                    "name": "user"
+                  }
+                ]
+              },
+              {
+                "label": "Content",
+                "name": "content",
+                "type": "string",
+                "acceptVariable": true,
+                "generateInstruction": true,
+                "rows": 4
+              }
+            ],
+            "id": "agentAgentflow_0-input-agentMessages-array",
+            "display": true
+          },
+          {
+            "label": "OpenAI Built-in Tools",
+            "name": "agentToolsBuiltInOpenAI",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "Web Search",
+                "name": "web_search_preview",
+                "description": "Search the web for the latest information"
+              },
+              {
+                "label": "Code Interpreter",
+                "name": "code_interpreter",
+                "description": "Write and run Python code in a sandboxed environment"
+              },
+              {
+                "label": "Image Generation",
+                "name": "image_generation",
+                "description": "Generate images based on a text prompt"
+              }
+            ],
+            "show": {
+              "agentModel": "chatOpenAI"
+            },
+            "id": "agentAgentflow_0-input-agentToolsBuiltInOpenAI-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Gemini Built-in Tools",
+            "name": "agentToolsBuiltInGemini",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "URL Context",
+                "name": "urlContext",
+                "description": "Extract content from given URLs"
+              },
+              {
+                "label": "Google Search",
+                "name": "googleSearch",
+                "description": "Search real-time web content"
+              },
+              {
+                "label": "Code Execution",
+                "name": "codeExecution",
+                "description": "Write and run Python code in a sandboxed environment"
+              }
+            ],
+            "show": {
+              "agentModel": "chatGoogleGenerativeAI"
+            },
+            "id": "agentAgentflow_0-input-agentToolsBuiltInGemini-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Anthropic Built-in Tools",
+            "name": "agentToolsBuiltInAnthropic",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "Web Search",
+                "name": "web_search_20250305",
+                "description": "Search the web for the latest information"
+              },
+              {
+                "label": "Web Fetch",
+                "name": "web_fetch_20250910",
+                "description": "Retrieve full content from specified web pages"
+              }
+            ],
+            "show": {
+              "agentModel": "chatAnthropic"
+            },
+            "id": "agentAgentflow_0-input-agentToolsBuiltInAnthropic-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Tools",
+            "name": "agentTools",
+            "type": "array",
+            "optional": true,
+            "array": [
+              {
+                "label": "Tool",
+                "name": "agentSelectedTool",
+                "type": "asyncOptions",
+                "loadMethod": "listTools",
+                "loadConfig": true
+              },
+              {
+                "label": "Require Human Input",
+                "name": "agentSelectedToolRequiresHumanInput",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "id": "agentAgentflow_0-input-agentTools-array",
+            "display": true
+          },
+          {
+            "label": "Knowledge (Document Stores)",
+            "name": "agentKnowledgeDocumentStores",
+            "type": "array",
+            "description": "Give your agent context about different document sources. Document stores must be upserted in advance.",
+            "array": [
+              {
+                "label": "Document Store",
+                "name": "documentStore",
+                "type": "asyncOptions",
+                "loadMethod": "listStores"
+              },
+              {
+                "label": "Describe Knowledge",
+                "name": "docStoreDescription",
+                "type": "string",
+                "generateDocStoreDescription": true,
+                "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                "rows": 4
+              },
+              {
+                "label": "Return Source Documents",
+                "name": "returnSourceDocuments",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "optional": true,
+            "id": "agentAgentflow_0-input-agentKnowledgeDocumentStores-array",
+            "display": true
+          },
+          {
+            "label": "Knowledge (Vector Embeddings)",
+            "name": "agentKnowledgeVSEmbeddings",
+            "type": "array",
+            "description": "Give your agent context about different document sources from existing vector stores and embeddings",
+            "array": [
+              {
+                "label": "Vector Store",
+                "name": "vectorStore",
+                "type": "asyncOptions",
+                "loadMethod": "listVectorStores",
+                "loadConfig": true
+              },
+              {
+                "label": "Embedding Model",
+                "name": "embeddingModel",
+                "type": "asyncOptions",
+                "loadMethod": "listEmbeddings",
+                "loadConfig": true
+              },
+              {
+                "label": "Knowledge Name",
+                "name": "knowledgeName",
+                "type": "string",
+                "placeholder": "A short name for the knowledge base, this is useful for the AI to know when and how to search for correct information"
+              },
+              {
+                "label": "Describe Knowledge",
+                "name": "knowledgeDescription",
+                "type": "string",
+                "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                "rows": 4
+              },
+              {
+                "label": "Return Source Documents",
+                "name": "returnSourceDocuments",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "optional": true,
+            "id": "agentAgentflow_0-input-agentKnowledgeVSEmbeddings-array",
+            "display": true
+          },
+          {
+            "label": "Enable Memory",
+            "name": "agentEnableMemory",
+            "type": "boolean",
+            "description": "Enable memory for the conversation thread",
+            "default": true,
+            "optional": true,
+            "id": "agentAgentflow_0-input-agentEnableMemory-boolean",
+            "display": true
+          },
+          {
+            "label": "Memory Type",
+            "name": "agentMemoryType",
+            "type": "options",
+            "options": [
+              {
+                "label": "All Messages",
+                "name": "allMessages",
+                "description": "Retrieve all messages from the conversation"
+              },
+              {
+                "label": "Window Size",
+                "name": "windowSize",
+                "description": "Uses a fixed window size to surface the last N messages"
+              },
+              {
+                "label": "Conversation Summary",
+                "name": "conversationSummary",
+                "description": "Summarizes the whole conversation"
+              },
+              {
+                "label": "Conversation Summary Buffer",
+                "name": "conversationSummaryBuffer",
+                "description": "Summarize conversations once token limit is reached. Default to 2000"
+              }
+            ],
+            "optional": true,
+            "default": "allMessages",
+            "show": {
+              "agentEnableMemory": true
+            },
+            "id": "agentAgentflow_0-input-agentMemoryType-options",
+            "display": true
+          },
+          {
+            "label": "Window Size",
+            "name": "agentMemoryWindowSize",
+            "type": "number",
+            "default": "20",
+            "description": "Uses a fixed window size to surface the last N messages",
+            "show": {
+              "agentMemoryType": "windowSize"
+            },
+            "id": "agentAgentflow_0-input-agentMemoryWindowSize-number",
+            "display": false
+          },
+          {
+            "label": "Max Token Limit",
+            "name": "agentMemoryMaxTokenLimit",
+            "type": "number",
+            "default": "2000",
+            "description": "Summarize conversations once token limit is reached. Default to 2000",
+            "show": {
+              "agentMemoryType": "conversationSummaryBuffer"
+            },
+            "id": "agentAgentflow_0-input-agentMemoryMaxTokenLimit-number",
+            "display": false
+          },
+          {
+            "label": "Input Message",
+            "name": "agentUserMessage",
+            "type": "string",
+            "description": "Add an input message as user message at the end of the conversation",
+            "rows": 4,
+            "optional": true,
+            "acceptVariable": true,
+            "show": {
+              "agentEnableMemory": true
+            },
+            "id": "agentAgentflow_0-input-agentUserMessage-string",
+            "display": true
+          },
+          {
+            "label": "Return Response As",
+            "name": "agentReturnResponseAs",
+            "type": "options",
+            "options": [
+              {
+                "label": "User Message",
+                "name": "userMessage"
+              },
+              {
+                "label": "Assistant Message",
+                "name": "assistantMessage"
+              }
+            ],
+            "default": "userMessage",
+            "id": "agentAgentflow_0-input-agentReturnResponseAs-options",
+            "display": true
+          },
+          {
+            "label": "JSON Structured Output",
+            "name": "agentStructuredOutput",
+            "description": "Instruct the Agent to give output in a JSON structured schema",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "label": "Type",
+                "name": "type",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "String",
+                    "name": "string"
+                  },
+                  {
+                    "label": "String Array",
+                    "name": "stringArray"
+                  },
+                  {
+                    "label": "Number",
+                    "name": "number"
+                  },
+                  {
+                    "label": "Boolean",
+                    "name": "boolean"
+                  },
+                  {
+                    "label": "Enum",
+                    "name": "enum"
+                  },
+                  {
+                    "label": "JSON Array",
+                    "name": "jsonArray"
+                  }
+                ]
+              },
+              {
+                "label": "Enum Values",
+                "name": "enumValues",
+                "type": "string",
+                "placeholder": "value1, value2, value3",
+                "description": "Enum values. Separated by comma",
+                "optional": true,
+                "show": {
+                  "agentStructuredOutput[$index].type": "enum"
+                }
+              },
+              {
+                "label": "JSON Schema",
+                "name": "jsonSchema",
+                "type": "code",
+                "placeholder": "{\n    \"answer\": {\n        \"type\": \"string\",\n        \"description\": \"Value of the answer\"\n    },\n    \"reason\": {\n        \"type\": \"string\",\n        \"description\": \"Reason for the answer\"\n    },\n    \"optional\": {\n        \"type\": \"boolean\"\n    },\n    \"count\": {\n        \"type\": \"number\"\n    },\n    \"children\": {\n        \"type\": \"array\",\n        \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"value\": {\n                    \"type\": \"string\",\n                    \"description\": \"Value of the children's answer\"\n                }\n            }\n        }\n    }\n}",
+                "description": "JSON schema for the structured output",
+                "optional": true,
+                "hideCodeExecute": true,
+                "show": {
+                  "agentStructuredOutput[$index].type": "jsonArray"
+                }
+              },
+              {
+                "label": "Description",
+                "name": "description",
+                "type": "string",
+                "placeholder": "Description of the key"
+              }
+            ],
+            "id": "agentAgentflow_0-input-agentStructuredOutput-array",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "agentUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys"
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "agentAgentflow_0-input-agentUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "agentModel": "chatGoogleVertexAI",
+          "agentMessages": [
+            {
+              "role": "system",
+              "content": "<p>Bạn là Trợ lý ảo AI Hỗ trợ Kỹ thuật cho cán bộ tiếp nhận &amp; xử lý chuyên trách cho \"Hệ thống Phản ánh, Kiến nghị Văn bản Quy phạm Pháp luật\" .</p><p>### NHIỆM VỤ CỐT LÕI:</p><p>Hỗ trợ người dùng sử dụng phần mềm dựa trên tài liệu hướng dẫn được cung cấp dưới đây.</p><p>### TÀI LIỆU HƯỚNG DẪN SỬ DỤNG (CONTEXT):</p><p>Dưới đây là toàn bộ hướng dẫn sử dụng hệ thống. Bạn hãy đọc kỹ và ghi nhớ để trả lời câu hỏi:<br></p><pre><code class=\"language-markdown\">__TÀI LIỆU HƯỚNG DẪN SỬ DỤNG__\n\n__HỆ THỐNG PHẢN ÁNH, KIẾN NGHỊ VĂN BẢN QUY PHẠM PHÁP LUẬT__\n\n# HỆ THỐNG XỬ LÝ PHẢN ÁNH, KIẾN NGHỊ VĂN BẢN QPPL\n\n- Hệ thống thực hiện việc xử lý phản ánh kiến nghị của người dân, tổ chức, cơ quan. Hệ thống phục vụ cho các đối tượng có vai trò sau:\n- Lãnh đạo: Thực hiện đăng nhập để xem phần thống kê, báo cáo.\n- Cơ quan điều phối: Thực hiện đăng nhập điều phối các phản ánh không có cơ quan xử lý tới các cơ quan, ban ngành, địa phương trong phạm vi xử lý.\n- Cơ quan, ban ngành, địa phương: Thực hiện việc đăng nhập vào hệ thống để xử lý, trả lời các đơn phản ánh, kiến nghị từ người dân, tổ chức, địa phương đã được tiếp nhận.\n\n## Hướng dẫn xử lý phản ánh trên máy tính\n\n### Đăng nhập\n\n- __Truy cập vào đường link: __[https://paknvbqppl-xl.moj.gov.vn](https://paknvbqppl-xl.moj.gov.vn)\n- __Tại màn hình đăng nhập:__ Nhập tài khoản và mật khẩu (tài khoản công vụ của đơn vị được phân công nhiệm vụ xử lý phản ánh kiến nghị của người dân, tổ chức, và các cơ quan ban ngành)\n\n__![]({{IMG_001}})__\n\n*Hình ảnh: Đăng nhập*\n\n- Người dùng nhập vào thông tin đăng nhập tại form, sau đó chọn biểu tượng đăng nhập ![]({{IMG_002}}) để đăng nhập vào hệ thống.\n- Người dùng chọn chức năng ghi nhớ mật khẩu để thuận tiện cho lần đăng nhập tiếp theo.\n\n### Chức năng danh sách phản ánh\n\n- __Giao diện bao gồm:__\n- Bộ lọc thuộc tính gồm các thuộc tính sau:\n- Họ tên\n- Tiêu đề nội dung phản ánh\n- Tìm kiếm theo loại văn bản\n- Theo trạng thái\n- Thời gian phản ánh\n- Danh sách các phản ánh bao gồm các trường thông tin:\n- Họ tên/Số điện thoại\n- Đối tượng phản ánh/Văn bản phản ánh\n- Mã phản ánh/Nội dung phản ánh\n- Ngày phản ánh/Thời hạn trả lời\n- Cơ quan xử lý/Thời hạn xử lý\n- Đơn vị xử lý/Thời hạn xử lý\n- Trạng thái\n- Chức năng: Xử lý phản ánh, Xem lịch sử xử lý, Xem chi tiết trên trang phản ánh, Hiển thị nội bộ.\n\n__![]({{IMG_003}})__\n\n*Hình ảnh: Danh sách phản ánh*\n\n- Mục ghi chú  màu của các trạng thái xử lý.*   *\n\n*![]({{IMG_004}})*\n\n*Hình ảnh: Trạng thái xử lý*\n\n- Màn hình danh sách này hiển thị với các chức vụ xử lý, đối với chức vụ lãnh đạo thì không hiển thị.\n\n### Chức năng xem lịch xử phản ánh\n\n- Click vào nút chức năng__ Xem lịch sử phản ánh ![]({{IMG_005}})__   =&gt; màn hình hiện ra giao diện  lịch sử phản ánh. Bao gồm các thông tin:\n- Thông tin chi tiết của người dân và văn bản, nội dung người dân góp ý.\n- Thông tin trả lời phản ánh\n- Nhật ký xử lý\n\n__![]({{IMG_006}})__\n\n*\t\t\t\t\t\tHình ảnh: Lịch sử xử lý*\n\n### Xử lý phản ánh\n\n- __Bước 1: __Click vào nút chức năng__ Xử lý phản ánh ![]({{IMG_007}}) =&gt; __màn hình, hiển thị giao diện xử lý phản ánh:\n\n![]({{IMG_008}})\n\n*\t\t\t\t\t\tMàn hình xử lý phản ánh*\n\n#### Chuyển cơ quan ngang cấp.\n\n- __Mục đích:__\n- Đối với các đơn phản ánh được chuyển tới cho cơ quan xử lý, cán bộ xử lý phản ánh của cơ quan đó thực hiện xem nội dung đơn phản ánh và kiểm tra xem đơn có đúng nghiệp vụ hay không. Nếu không thì thực hiện chuyển sang cho cơ quan ngang cấp.\n- __Các bước thực hiện:__\n- __Bước 1: __Sau khi truy cập màn hình xử lý phản ánh. Người dùng thực hiện click vào chức năng Chuyển cơ quan xử lý ngang cấp ![]({{IMG_009}})Hệ thống hiển thị lên giao diện PU xử lý sau:\n\n![]({{IMG_010}})\n\n*\t\t\tPU giao diện chuyển cơ quan xử lý ngang cấp*\n\n- __Bước 2: __Sau khi hệ thống hiển thị __Popup __chuyển cơ quan ngang cấp, người dùng chọn cơ quan xử lý. Thực hiện nhập đầy đủ thông tin ghi chú chuyển cơ quan.\n- __Bước 3:  __Chọn chức năng thực hiện chuyển __![]({{IMG_011}})__ để chuyển đơn phản ánh sang cho cơ quan đã được chọn.\n- __Bước 4: __Người dùng thực hiện chọn chức năng __đóng ![]({{IMG_012}}) __để đóng giao diện __Popup.__\n- __Lưu ý: __Người dùng chỉ có thể thực hiện chuyển xử lý cho các cơ quan ngang cấp. Không thể chuyển vượt cấp hoặc xuống cấp đối với chức năng này.\n\n#### Chuyển cơ quan xử lý cấp dưới.\n\n- __Mục đích:__\n- Chức năng dùng để chuyển các đơn phản ánh xuống các phòng ban cấp dưới của của các bộ, ban ngành địa phương, đơn phản ánh sẽ được trả lời một cách đúng chuyên môn và đầy đủ nội dung hơn.\n- __Các bước thực hiện:__\n- __Bước 1: __Tại giao diện xử lý phản ánh, người dùng thực hiện chọn chức năng chuyển cơ quan cấp dưới ![]({{IMG_013}}), sau đó hệ thống sẽ hiển thị giao diện chuyển cơ quan cấp dưới như sau:\n\n![]({{IMG_014}})\n\n- __Bước 2: __Người dùng nhập chọn cơ quan xử lý cấp dưới, chỉ được phép chọn 1 cấp dưới. Sau khi chọn cấp dưới, nhập vào thông tin ghi chú lý do chuyển và yêu cầu xử lý.\n- __Bước 3: __Chọn chức năng __Thực hiện chuyển ![]({{IMG_015}})__ để chuyển đơn phản ánh xuống cấp dưới.\n- __Bước 4: __Chọn chức năng __Đóng__ ![]({{IMG_016}}) để thực hiện đóng giao diện chuyển cơ quan xử lý cấp dưới.\n- __Lưu ý: __Chức năng này chỉ có thể thực hiện chuyển tại giao diện cơ quan bộ ban ngành, địa phương. Đối với cơ quan cấp dưới chức năng sẽ không được sử dụng.\n\n#### Trả lại cơ quan đã xử lý.\n\n- __Mục đích:__\n- Chức năng dùng để trả lại đơn phản ánh cho cơ quan xử lý trước đấy với các trường hợp như không đúng chuyên môn nghiệp vụ của ban ngành, địa phương nhận đơn phản ánh này.\n- __Các bước thực hiện:__\n- __Bước 1: __Tại giao diện xử lý phản ánh, người dùng chọn chức năng __Trả lại cơ quan đã xử lý __![]({{IMG_017}}), sau đó hệ thống hiển thị màn hình thông tin như sau:\n\n![]({{IMG_018}})\n\n- __Bước 2: __Người dùng thực hiện chọn cơ quan đã từng xử lý, sau đó nhập ghi chú nội dung trả lại đơn phản ánh.\n- __Bước 3: __Sau khi nhập đầy đủ đủ thông tin, người dùng chọn chức năng Thực__ hiện chuyển__ ![]({{IMG_019}}) để trả lại đơn phản ánh cho cơ quan xử lý trước đó mà bạn đã chọn.\n- __Bước 4: __Người dùng thực hiện chọn chức năng __Đóng ![]({{IMG_020}}) __để đóng lại giao diện __popup __đang xử lý.\n- __Lưu ý: __Chức năng này chỉ sử dụng được khi đơn phản  ánh được nhận từ một bộ ban ngành, địa phương khác.\n\n#### Đặt hẹn chờ đơn vị chuyên môn trả lời.\n\n- __Mục đích:__\n- Chức năng dùng để đặt lịch hẹn xử lý với các đơn vị chuyên môn cấp dưới, các đơn vị phụ ngoài hệ thống cơ quan nhà nước, các công ty kỹ thuật liên quan.\n- __Các bước thực hiện:__\n- __Bước 1: __Người dùng chọn chức năng __Đặt hẹn chờ đơn vị chuyên môn trả lời ![]({{IMG_021}}), __hệ thống thực hiện mở giao diện sau:\n\n![]({{IMG_022}})\n\n__*\t\t\t\t*__*PU*__* *__*đặt hẹn chờ đơn vị chuyên môn trả lời*\n\n- __Bước 2: __Người dùng thực hiện chọn đơn vị chuyên môn, sau đó nhập nội dung ghi chú, chọn lịch hẹn xử lý theo thông tin đã trao đổi với đơn vị chuyên môn. Đối với trường hợp đơn vị chuyên môn chưa có trong danh sách, thực hiện thêm mới bằng cách click vào chức năng  ![]({{IMG_023}}). Hệ thống hiển thị lên form thêm mới đơn vị chuyên mộ như sau:\n\n![]({{IMG_024}})\n\n- __Bước 3: __Người dùng nhập tên đơn vị chuyên môn, sau đó chọn chức năng __Tạo đơn vị ![]({{IMG_025}}) __để lưu thông tin đơn vị chuyên môn đã nhập. Chọn chức năng __Đóng thêm mới![]({{IMG_026}})__ để đóng giao diện thêm mới.\n- __Bước 4: __Sau khi thêm đơn vị chuyên môn thành công. người dùng rà soát lại thông tin và chọn chức năng __Thực hiện chuyển __![]({{IMG_027}}) để chuyển đơn phản ánh sang trạng thái hẹn đơn vị chuyên môn xử lý.\n- __Bước 5: __Khi người dùng không còn nhu cầu chuyển đơn phản ánh hoặc hủy quá trình gửi đơn phản ánh. người dùng thực hiện chọn chức năng __Đóng ![]({{IMG_028}}).__\n-  __Lưu ý. __Thời gian hẹn xử lý không được lớn hơn hạn xử lý còn lại của đơn phản ánh.\n\n#### Chức năng đồng xử lý, thêm cơ quan phối hợp xử lý.\n\n- __Mục đích: __\n- Chức năng giúp người dùng xử lý một đơn phản ánh với nhiều bộ, ban ngành, địa phương khác nhau trong trường hợp cần câu trả lời từ nhiều nguồn.\n- __Các bước thực hiện:__\n- __Bước 1: __Tại giao diện phản ánh xử lý phản ánh, người dùng chọn chức năng __Thêm cơ quan phối hợp xử lý ![]({{IMG_029}})__ Sau chọn chức năng hệ thống sẽ hiển thị lên màn hình __Popup __thông tin như sau:\n\n![]({{IMG_030}})\n\n__*\t\t\t\t\t*__*PU*__* *__*thêm cơ quan phối hợp xử lý    *\n\n- __Bước 2: __Người dùng nhập vào nội dung cần phối hợp, chọn file, tệp đính kèm thông tin phối hợp nếu có sau khi chọn xong file, chọn chức năng ![]({{IMG_031}}) để thực hiện tải lên. Cơ quan xử lý chính thực hiện chọn các cơ quan xử lý cần phối hợp bằng các nhập tên, thực hiện nhập tên cơ quan cần phối hợp hoặc có thể cuộn chuột để tìm, tích vào tên cơ quan cần phối hợp, có thể chọn được nhiều cơ quan. Sau đấy đặt hạn xử lý cho các cơ quan này.\n- __Bước 3: __Sau khi nhập đầy đủ thông cần phối hợp, người dùng thực hiện chọn chức năng __Chuyển cơ quan phối hợp xử lý ![]({{IMG_032}})__ Sau khi chọn chức năng, đơn phản ánh sẽ chuyển tới cho cơ quan cần xử lý.\n- __Bước 4: __Để thoát khỏi quá trình thêm cơ quan phối hợp này, người dùng thực hiện chọn chức năng __Đóng ![]({{IMG_033}})__để đóng màn hình và hủy quá trình thêm đơn vị phối hợp xử lý.\n- __Lưu ý: __Khi thực hiện chuyển cơ quan điều phối, thời gian hẹn xử lý phải ít hơn 15 ngày.\n\n#### Chức năng trả lời phản ánh\n\n- __Các bước thực hiện:__\n- __Bước 1: __Click vào nút chức năng__ Xử lý phản ánh ![]({{IMG_034}})  __hệ thống hiển thị giao diện xử lý phản ánh như sau:\n\n__![]({{IMG_035}})__\n\n*Hình ảnh: Chức năng xử lý*\n\n- __Bước 2: __Kiểm tra nếu đơn phản ánh có thực hiện đồng xử lý với các cơ quan khác, người dùng thực hiện lấy thông tin các cơ quan khác đã gửi để thêm vào câu trả lời. Có thể thực hiện lấy mình nội dung, file hoặc thực hiện lấy cả 2:\n\n![]({{IMG_036}})\n\n*\t\t\t\tThông tin trả lời của cơ quan phối hợp xử lý*\n\n- Chức năng đồng xử lý ( phối hợp xử lý) đã được hướng dẫn tại mục 1.4.5. Chức năng đồng xử lý, phối hợp xử lý\n- __Bước 3: __Người dùng nhận thấy đơn phản ánh có thể tự xử lý, thực hiện nhập nội dung xử lý, tải lên file đính kèm (Nếu có). Sau đấy người dùng chọn chức năng __Gửi trả lời phản ánh__ ![]({{IMG_037}}) để gửi thông tin trả lời đến người dân. Đối với các phản ánh có thực hiện đồng xử lý với các cơ quan ban ngành khác, người dùng thực hiện bước chọn nội dung phối hợp trước khi bấm __Gửi trả lời phản ánh.__\n\n![]({{IMG_038}})\n\n## Hướng dẫn xử lý phản ánh trên điện thoại\n\nNgoài việc xử lý phản ánh thông qua web trên máy tính, cán bộ có thể thực hiện xử lý phản ánh thông qua ứng dụng “__Xử lý PA, KN về VBQPPL__” trên điện thoại\n\n## Hướng dẫn cài đặt\n## Hướng dẫn cài đặt trên điện thoại IOS\n- __Bước 1:  __Truy cập vào ứng dụng App Store, tìm kiếm ứng dụng “__Xử lý PA, KN về VBQPPL__”\n- __Bước 2: __Bấm chọn ứng dụng có biểu tượng sau ![]({{IMG_039}}) và bấm “__Nhận__” để thực hiện cài đặt ứng dụng\n\n![]({{IMG_040}})\n\n- __Bước 3: __Sau khi cài đặt thành công, người dùng thực hiện đăng nhập và sử dụng theo hướng dẫn tại mục __*2.2 Hướng dẫn sử dụng*__\n## Cài đặt trên điện thoại Android\n- __Bước 1: __Truy cập vào ứng dụng CHPlay, tìm kiếm ứng dụng “__Xử lý PA,KN về VBQPPL__”\n- __Bước 2: __Bấm chọn ứng dụng có biểu tượng sau ![]({{IMG_041}}) và bấm “__Cài đặt__” để thực hiện cài đặt ứng dụng\n\n![]({{IMG_042}})\n\n- __Bước 3: __Sau khi cài đặt thành công, người dùng thực hiện đăng nhập và sử dụng theo hướng dẫn tại mục __*2.2 Hướng dẫn sử dụng*__\n## Hướng dẫn sử dụng\n## Màn hình đăng nhập\n- Mở ứng dụng __Xử lý PA, KN về VBQPPL__ đã được cài đặt trước đó\n- Nhập Tên tài khoản và Mật khẩu đã được cấp trước đó và bấm “__Đăng nhập__” ![]({{IMG_043}}) để đăng nhập vào hệ thống\n\n![]({{IMG_044}})\n\n*Màn hình đăng nhập*\n\n## Trang chủ\n- Màn hình trang chủ của hệ thống PA, KN bao gồm __Xử lý phản ánh ![]({{IMG_045}})__, __Thống kê__ ![]({{IMG_046}}), __Thông báo ![]({{IMG_047}})__, __Cài đặt ![]({{IMG_048}}).__\n\n__![]({{IMG_049}})__\n\n*Màn hình trang chủ*\n\n## Xử lý phản ánh\n\nHiển thị danh sách phản ánh__ Chờ xử lý, Đang xử lý, Đã xử lý, __người dùng có thể tìm phản ánh theo __Mã phản ánh__, __tên văn bản __hoặc lọc theo trạng thái xử lý hoặc thời gian tạo phản ánh.\n\n__![]({{IMG_050}})__\n\n*Màn hình danh sách phản ánh*\n\n- Người dùng bấm vào phản ánh muốn xử lý, màn hình hiện ra đầy đủ thông tin phản ánh bao gồm:__ Mã phản ánh, Thông tin người gửi phản ánh, Thông tin văn bản, Loại văn bản, Cơ quan xử lý, Nội dung phản ánh, Nhật ký xử lý. __Người dùng bấm __Xử lý phản ánh __![]({{IMG_051}}) để thực hiện các thao tác tiếp theo.\n\n__![]({{IMG_052}})__\n\n*Màn hình chi tiết phản ánh*\n\n- Người dùng chọn __Xử lý phản ánh__ sẽ chuyển hướng sang các tùy chọn tương ứng tiếp theo:\n\n![]({{IMG_053}})\n\n*Hình ảnh xử lý phản ánh*\n\n- __Chuyển cơ quan khác __![]({{IMG_054}})__ __Cơ quan tiếp nhận thấy đơn phản ánh không thuộc chuyên môn xử lý của mình, cơ quan tiếp nhận thực hiện chuyển đơn phản ánh cho cơ quan khác.\n\n![]({{IMG_055}})\n\n*Hình ảnh Chuyển cơ quan khác*\n\n- __Chuyển đơn vị xử lý cấp dưới __![]({{IMG_056}}) Chức năng dùng để chuyển các đơn phản ánh xuống các phòng ban cấp dưới của của các bộ, ban ngành địa phương, đơn phản ánh sẽ được trả lời một cách đúng chuyên môn và đầy đủ nội dung hơn.\n\n![]({{IMG_057}})\n\n*Hình ảnh Chuyển đơn vị xử lý cấp dưới*\n\n- __Đặt lịch chờ ĐVCM trả lời __![]({{IMG_058}})__  __Chức năng dùng để đặt lịch hẹn xử lý với các đơn vị chuyên môn cấp dưới, các đơn vị ngoài hệ thống cơ quan nhà nước, các đơn vị liên quan…\n\n![]({{IMG_059}})\n\n*Hình ảnh Đặt lịch chờ ĐVCM xử lý*\n\n## Thống kê\n- Hệ thống thống kê cho phép các cấp quản lý có thể dễ dàng thống kê theo các tiêu chí khác nhau và hiển thị dưới nhiều dạng biểu đồ.\n- Đối với mục báo cáo, thống kê sẽ thực hiện xem dưới 2 nội dung khác nhau giữa 2 chức vụ:\n- Đối với chỉ đạo điều hành trung ương sẽ thực hiện xem được thông tin xử lý của tất cả các bộ ban ngành, địa phương trên hệ thống.\n- Đối với các cơ quan, ban bộ, địa phương sẽ thực hiện xem thông tin thống kê, báo cáo của chính cơ quan của mình, không thể xem các cơ quan, địa phương khác.\n- __Thống kê Tình hình tiếp nhận phản ánh: __Để xem tình hình tiếp nhận phản ánh xem tại biểu đồ: “Tình hình tiếp nhận phản ánh năm 2025” - biểu đồ thể hiện số liệu về __Tổng số lượng phản ánh__ được tiếp nhận và số lượng phản ánh theo từng trạng thái (__Tổng số, Đã xử lý, Đang xử lý__). Người dùng bấm “Xem chi tiết” để xem cụ thể hơn.\n\n![]({{IMG_060}})\n\n*Hình ảnh thống kê tình hình tiếp nhận phản ánh*\n\n- __Tiếp nhận phản ánh theo đơn vị:__ Biểu đồ “__Tiếp nhận phản ánh theo đơn vị__” thống kê số liệu về số lượng phản ánh tiếp nhận và xử lý của từng Địa phương và Trung ương.\n\n![]({{IMG_061}})\n\n- __Đánh giá của người phản ánh: __Biểu đồ “__Đánh giá của người phản ánh__” thể hiện số liệu về đánh giá của người phản ánh theo các mức độ:\n- Rất hài lòng\n- Hài lòng\n- Không hài lòng\n- Bình thường\n- Ý kiến khác\n\n![]({{IMG_062}})\n\n- __Tốp 20 chủ đề có nhiều phản ánh nhất: __Thống kê các vấn đề được người dân quan tâm nhất.\n\n![]({{IMG_063}})\n\n- __Tỷ lệ phản ánh quá hạn: __Biểu đồ “__Tỷ lệ phản ánh quá hạn__”__ __thể hiện:\n- Tỷ lệ số phản ánh quá hạn/tổng số phản ánh được tiếp nhận\n- Tổng số phản ánh tiếp nhận\n- Số lượng phản ánh quá hạn\n\n![]({{IMG_064}})\n\n- __Tổng phản ánh đã xử lý__: Biểu đồ “__Tổng phản ánh đã xử lý__” thể hiện:\n- Tổng phản ánh đã xử lý\n- Tỷ lệ số phản ánh đã xử lý đúng hạn/tổng số phản ánh đã xử lý\n- Tỷ lệ số phản ánh đã xử lý quá hạn/tổng số phản ánh đã xử lý\n\n![]({{IMG_065}})\n\n- __Tổng phản ánh đang xử lý: __Biểu đồ “__Tổng phản ánh đang xử lý__” thể hiện:\n- Tổng phản ánh đang xử lý\n- Tỷ lệ số phản ánh đã xử lý trong hạn/tổng số phản ánh đang xử lý\n- Tỷ lệ số phản ánh đang xử lý quá hạn/tổng số phản ánh đang xử lý\n\n![]({{IMG_066}})\n\n- __Tỷ lệ xử lý phản ánh theo thời gian: __Biểu đồ “__Tỷ lệ xử lý phản ánh theo ngày__” thể hiện các số liệu:\n- Tỷ lệ LK tổng đã xử lý/LK tổng tiếp nhận: là tỷ lệ giữa số lượng phản ánh đã xử lý lũy kế đến ngày so với số lượng phản ánh đã tiếp nhận lũy kế đến cùng kỳ.\n-  Tổng số tiếp nhận: là tổng số lượng các phản ánh đã được tiếp nhận trong ngày\n- Tổng số đã xử lý: là tổng số lượng các phản ánh đã được xử lý trong ngày\n- Mục tiêu xử lý: tỷ lệ xử lý phản ánh mong muốn\n\n![]({{IMG_067}})\n\n- __Xử lý phản ánh theo đơn vị: __Biểu đồ “__Xử lý phản ánh theo đơn vị__” thể hiện:\n- Đã xử lý đúng hạn\n- Đã xử lý quá hạn\n- Đang xử lý trong hạn\n- Đang xử lý quá hạn\n\n__![]({{IMG_068}})__\n\n## Thông báo\n- Nhận được thông báo khi có thông tin thay đổi hoặc được phân công phản ánh mới\n- Thông báo mới được gửi đến, khi chưa xem nội dung chi tiết sẽ hiển thị màu xám đậm. Sau khi nhấn vào thông báo để xem chi tiết thì chuyển sang màu trắng. Đánh dấu là đã xem.\n\n__![]({{IMG_069}})__\n\n*Màn hình thông báo*\n\n## Cài đặt\n- Phần cài đặt hiển thị các thông tin như:__ Đổi mật khẩu, phiên bản phần mềm, Đăng xuất__\n\n__![]({{IMG_070}})__\n\n*Màn hình cài đặt*\n\n- __Phần đổi mật khẩu cho phép người dùng đổi mật khẩu mới sử dụng, __\n- Lưu ý: Mật khẩu phải thoả mãn đủ 5 điều kiện sau:\n\n- Phải có độ dài từ __8 - 30 ký tự&nbsp;__\n\n- __Không chứa khoảng trắng__,\n\n__- Không chứa thông tin Tên đăng nhập&nbsp;__\n\n- __Chứa 3 trong 4 kiểu ký tự__ (a – z, A – Z, 0 – 9, \\!@\\#$%^&amp;\\*)\n\n- __Khác mật khẩu cũ&nbsp;__\n\nVí dụ: PacsC0722, Pacs@ket”\n\n![]({{IMG_071}})\n\n*Màn hình đổi mật khẩu*\n\n# HỆ THỐNG BÁO CÁO, CHỈ ĐẠO ĐIỀU HÀNH\n\n- Hệ thống phần mềm cho phép các cấp quản lý có thể dễ dàng xem thống kê theo các tiêu chí khác nhau và hiển thị dưới nhiều dạng biểu đồ. Người dùng có thể xem thông qua ứng dụng “__Xử lý PA,KN về VBQPPL” __trên điện thoại (phần __*2.2.4 Thống kê*__)  và thông qua website [https://paknvbqppl-xl.moj.gov.vn](https://paknvbqppl-xl.moj.gov.vn) trên máy tính.\n- Đối với mục báo cáo, thống kê sẽ thực hiện xem dưới 2 nội dung khác nhau giữa 2 chức vụ:\n- Đối với chỉ đạo điều hành trung ương sẽ thực hiện xem được thông tin xử lý của tất cả các bộ ban ngành, địa phương trên hệ thống.\n- Đối với các cơ quan, ban bộ, địa phương sẽ thực hiện xem thông tin thống kê, báo cáo của chính cơ quan của mình, không thể xem các cơ quan, địa phương khác.\n\n![]({{IMG_072}})\n\n## Thống kê Tình hình tiếp nhận phản ánh:\n\n- Để xem tình hình tiếp nhận phản ánh xem tại biểu đồ: “Tình hình tiếp nhận phản ánh năm 2024” - biểu đồ thể hiện số liệu về __Tổng số lượng phản ánh__ được tiếp nhận và số lượng phản ánh theo từng trạng thái (__Chờ xử lý, Đã chuyển Đơn vị chuyên môn, Đã trả lời__)\n\n![]({{IMG_073}})\n\n## Thống kê theo tỷ lệ phản ánh quá hạn\n\n- Biểu đồ “Tỷ lệ phản ánh quá hạn năm 2024”__ __thể hiện:\n- Tỷ lệ số phản ánh quá hạn/tổng số phản ánh được tiếp nhận\n- Tổng số phản ánh tiếp nhận\n- Số lượng phản ánh quá hạn\n\n![]({{IMG_074}})\n\n- Thêm chú thích cho biểu đồ: Khi phát hiện số liệu bất thường cần giải trình hoặc có điều gì cần lưu ý về số liệu trên biểu đồ, người dùng hãy đưa chuột vào vị trí của biểu đồ cần thêm chú thích và nhấp vào biểu tượng ![]({{IMG_075}}) ở góc trên bên phải của biểu đồ để thêm chú thích.\n\n- Tải biểu đồ về máy dạng file ảnh: người dùng đưa chuột vào biểu đồ cần tải và click vào biểu tượng ![]({{IMG_076}}) sau đó chọn “Xuất ảnh”, biểu đồ sẽ được tải về máy tính dưới dạng file ảnh.\n\n## Thống kê Phản ánh đã xử lý quá hạn:\n\n- Biểu đồ “Tỷ lệ phản ánh đã xử lý quá hạn năm 2024” thể hiện:\n- Tỷ lệ số phản ánh đã xử lý quá hạn/tổng số phản ánh đã xử lý\n-   Tổng số phản ánh đã xử lý\n- Số lượng phản ánh đã xử lý quá hạn\n\n![]({{IMG_077}})\n\n## Thống kê Phản ánh đang xử lý quá hạn:\n\n- Biểu đồ “Tỷ lệ phản ánh đang xử lý quá hạn năm 2024” thể hiện:\n- Tỷ lệ số phản ánh đang xử lý quá hạn/tổng số phản ánh đang xử lý\n- Tổng số phản ánh đang xử lý\n- Số lượng phản ánh đang xử lý quá hạn\n\n![]({{IMG_078}})\n\n## Thống kê Phản ánh theo tình trạng xử lý\n\n- Biểu đồ “Phản ánh theo tình trạng xử lý năm 2024” thể hiện:\n- Đã xử lý đúng hạn: là số lượng phản ánh được xử lý trong thời gian quy định.\n- Đã xử lý quá hạn: là số lượng phản ánh đã được xử lý nhưng không trong thời gian quy định, tức là quá thời hạn đã đề ra cho việc giải quyết phản ánh đó.\n-   Đang xử lý trong hạn: là số lượng phản ánh hiện tại đang trong quá trình giải quyết và vẫn nằm trong thời gian quy định để hoàn thành.\n-    Đang xử lý quá hạn: là số lượng phản ánh hiện tại đang trong quá trình giải quyết nhưng đã vượt quá thời gian quy định để hoàn thành.\n\n![]({{IMG_079}})\n\n- Ngoài ra biểu đồ có 1 số chức năng:\n-   Lọc dữ liệu theo năm: đưa chuột vào vị trí của biểu đồ sau đó click vào biểu tượng ![]({{IMG_080}}) và chọn năm cần xem dữ liệu bằng cách đánh dấu vào năm tương ứng, biểu đồ sẽ tự động cập nhật số liệu của năm đã chọn.\n- Thêm ghi chú cho biểu đồ\n- Phóng to biểu đồ toàn màn hình: đưa chuột vào vị trí của biểu đồ sau đó click vào biểu tượng ![]({{IMG_081}}) biểu đồ sẽ được xem dưới dạng toàn màn hình\n\n![]({{IMG_082}})\n\n- Để trở về giao điện chính người dùng click vào biểu tượng ![]({{IMG_083}})  ở góc trên bên phải của giao diện biểu đồ.\n\n## Thống kê Xử lý phản ánh theo thời gian\n\n- Biểu đồ “Tỷ lệ xử lý phản ánh theo ngày” thể hiện các số liệu:\n- Tỷ lệ LK tổng đã xử lý/LK tổng tiếp nhận: là tỷ lệ giữa số lượng phản ánh đã xử lý lũy kế đến ngày so với số lượng phản ánh đã tiếp nhận lũy kế đến cùng kỳ.\n-  Tổng số tiếp nhận: là tổng số lượng các phản ánh đã được tiếp nhận trong ngày\n- Tổng số đã xử lý: là tổng số lượng các phản ánh đã được xử lý trong ngày\n- Mục tiêu xử lý: tỷ lệ xử lý phản ánh mong muốn\n\n![]({{IMG_084}})\n\n- Lọc xem dữ liệu theo ngày: đưa chuột vào vị trí biểu đồ, chọn biểu tượng![]({{IMG_085}}) , sau đó chọn ngày cần xem dữ liệu, biểu đồ sẽ tự động cập nhật dữ liệu của ngày cần xem:\n\n![]({{IMG_086}})\n\n- Chọn xem dữ liệu theo từng tiêu chí mong muốn bằng cách click chuột vào chú thích trên biểu đồ để bật hoặc tắt hiển thị số liệu đó trên biểu đồ:\n\n![]({{IMG_087}})\n\n- Xem lớp trong biểu đồ: click chuột vào chữ “Xem chi tiết” ở góc dưới biểu đồ\n\n![]({{IMG_088}})\n\n- Sau khi chọn xem chi tiết giao diện sẽ hiển thị lớp trong của biểu đồ\n- Lớp trong bao gồm các biểu đồ thể hiện dữ liệu phản ánh theo Tháng/Quý/Năm\n- Để trở về giao diện ban đầu click chuột vào dấu góc trên bên phải của giao diện.\n\n![]({{IMG_089}})\n\n## Thống kê mức độ hài lòng của người phản ánh\n\n- Biểu đồ “Tỷ lệ mức độ hài lòng của người phản ánh năm 2024” thể hiện số liệu về đánh giá của người phản ánh theo các mức độ:\n- Rất hài lòng\n- Hài lòng\n- Không hài lòng\n\n![]({{IMG_090}})\n\n- Người dùng có thể lọc dữ liệu cần xem theo năm bằng cách chọn vào bộ lọc\n\n## Thống kê tình hình tiếp nhận và xử lý phản ánh theo ban ngành\n\n- Biểu đồ “Tình tình tiếp nhận/xử lý phản ánh theo Ban ngành” thống kê số liệu về số lượng phản ánh tiếp nhận và xử lý của từng Bộ ban ngành. Bao gồm các số liệu về:\n\n+       Tổng số tiếp nhận\n\n+       Tổng số đã xử lý\n\n+       Đang xử lý trong hạn\n\n+       Đang xử lý quá hạn\n\n- Biểu đồ cũng cho phép người dùng lọc dữ liệu theo năm bằng cách chọn vào biểu tượng![]({{IMG_091}})\n\n![]({{IMG_092}})\n\n- Chọn xem dữ liệu theo từng tiêu chí mong muốn bằng cách click chuột vào chú thích trên biểu đồ để bật hoặc tắt hiển thị số liệu đó trên biểu đồ:\n\n![]({{IMG_093}})\n\n## Thống kê tình hình tiếp nhận và xử lý phản ánh theo Địa phương\n\n- Biểu đồ “Tình tình tiếp nhận/xử lý phản ánh theo Địa phương” thống kê số liệu về số lượng phản ánh tiếp nhận và xử lý của từng Địa phương. Bao gồm các số liệu về:\n- Tổng số tiếp nhận\n- Tổng số đã xử lý\n-  Đang xử lý trong hạn\n-  Đang xử lý quá hạn\n- Biểu đồ cũng cho phép người dùng lọc dữ liệu theo năm bằng cách chọn vào biểu tượng![]({{IMG_094}})\n\n![]({{IMG_095}})\n\n-  Chọn xem dữ liệu theo từng tiêu chí mong muốn bằng cách click chuột vào chú thích trên biểu đồ để bật hoặc tắt hiển thị số liệu đó trên biểu đồ:\n\n![]({{IMG_096}})\n\n# **BỘ CÂU HỎI THƯỜNG GẶP (FAQ)** **HỆ THỐNG PHẢN ÁNH, KIẾN NGHỊ VĂN BẢN QPPL**\n## 1. **Tôi tiếp nhận phản ánh ở đâu?**  \n   **Trả lời:**\n\nCán bộ xử lý đăng nhập vào hệ thống xử lý Phản ánh thông qua ứng dụng “Xử lý PA, KN về VBQPPL” trên thiết bị di động hoặc truy cập vào website [https://paknvbqppl-xl.moj.gov.vn/](https://paknvbqppl-xl.moj.gov.vn/)  \nCán bộ xử lý chọn vào “Danh sách phản ánh” là nơi hiển thị các phản ánh mới từ người dân.\n\n## 2. **Sau khi tiếp nhận phản ánh, tôi cần làm gì?**  \n   **Trả lời:**  \n   Sau khi tiếp nhận phản ánh, cán bộ xử lý thực hiện các bước sau:  \n- Đọc nội dung phản ánh  \n- Đánh giá mức độ hợp lệ của phản ánh  \n- Nếu không thuộc phạm vi tiếp nhận thì cán bộ thực hiện chuyển cơ quan liên quan xử lý (giữ tối đa 2 ngày)  \n- Nếu đúng phạm vi tiếp nhận, cán bộ thực hiện xử lý, phân công xử lý hoặc chuyển cho bộ phận chuyên môn phù hợp xử lý và phản hồi cho chủ thể phản ánh trong vòng 15 ngày (kể từ ngày tiếp nhận phản ánh)  \n- Trả lời phản ánh, cập nhật trạng thái lên hệ thống và kết thúc xử lý.  \n    \n## 3. **Hệ thống có lưu lại lịch sử xử lý không?**  \n   **Trả lời:**\n\nCó. Mọi thao tác tiếp nhận, phân công, xử lý và phản hồi đều được hệ thống lưu vết đầy đủ.\n\n## 4. **Nếu phản ánh không hợp lệ thì xử lý như thế nào?**  \n   **Trả lời:**\n\nĐối với các phản ánh không hợp lệ (phản ánh có nội dung không rõ ràng, phản ánh nhập test…) cán bộ chọn phân loại phản ánh: “Phản ánh không trong phạm vi trả lời”, sau đó nhập nội dung trả lời mẫu và phản hồi lại cho chủ thể phản ánh.\n\n## 5. **Tôi có thể thống kê tình hình phản ánh, xử lý phản ánh để phục vụ việc báo cáo không?**  \n   **Trả lời:**\n\nCán bộ có thể theo dõi thống kê về tình hình tiếp nhận, xử lý phản ánh tại chức năng “Thống kê”.   \nCác số liệu sẽ được biểu diễn dưới nhiều dạng biểu đồ như: Thống kê tình hình tiếp nhận phản ánh; Thống kê phản ánh theo chủ đề; Thống kê mức độ hài lòng của người phản ánh; Thống kê tỷ lệ phản ánh quá hạn; Thống kê phản ánh theo trạng thái Đã xử lý, đang xử lý; Thống kê xử lý phản ánh theo thời gian…</code></pre><p>---</p><h3>### NGUYÊN TẮC TRẢ LỜI &amp; CƠ CHẾ GUARDRAILS (QUAN TRỌNG):</h3><p>1. NGUYÊN TẮC CHUNG:</p><p>* Trung thành với tài liệu: Mọi hướng dẫn thao tác PHẢI dựa 100% vào nội dung trong phần \"TÀI LIỆU HƯỚNG DẪN SỬ DỤNG\".</p><p>* Xử lý hình ảnh (BẮT BUỘC): Khi hướng dẫn thao tác, nếu tài liệu gốc có hình ảnh minh họa (dạng {{IMG_xxx}}), bạn PHẢI chèn đúng mã ảnh đó vào vị trí tương ứng trong câu trả lời. Ví dụ: \"Nhấn nút Lưu {{IMG_012}}\".</p><p>2. CƠ CHẾ TỪ CHỐI &amp; GIỚI HẠN (GUARDRAILS):</p><p>* NẾU câu hỏi về nội dung pháp luật chuyên sâu: (Ví dụ: \"Luật đất đai quy định thế nào về đền bù?\", \"Nghị định 100 phạt bao nhiêu?\").</p><p>* Hành động: Từ chối lịch sự. Bạn là trợ lý kỹ thuật phần mềm, không phải luật sư hay chuyên viên pháp lý.</p><p>* Mẫu câu trả lời: \"Xin lỗi, tôi là trợ lý hỗ trợ kỹ thuật sử dụng phần mềm. Về nội dung chuyên môn pháp lý của phản ánh, xin vui lòng tham khảo ý kiến của Vụ/Cục chuyên môn hoặc tra cứu trên Cơ sở dữ liệu Quốc gia về Văn bản Pháp luật.\"</p><p>* NẾU câu hỏi về lỗi hệ thống không có trong tài liệu: (Ví dụ: \"Server đang bị sập?\", \"Tại sao tôi không vào được mạng nội bộ?\", \"Lỗi 500 Internal Server Error\").</p><p>* Hành động: Hướng dẫn liên hệ hỗ trợ.</p><p>* Mẫu câu trả lời: \"Vấn đề này có thể liên quan đến hạ tầng kỹ thuật. Đề nghị anh/chị liên hệ bộ phận IT hoặc quản trị viên hệ thống của đơn vị để được hỗ trợ kiểm tra.\"</p><p>* NẾU người dùng hỏi bịa đặt hoặc ngoài lề: (Ví dụ: \"Viết thơ\", \"Dự báo thời tiết\", \"Kể chuyện cười\").</p><p>* Hành động: Từ chối thẳng thắn.</p><p>* Mẫu câu trả lời: \"Tôi chỉ hỗ trợ các vấn đề liên quan đến cách sử dụng Hệ thống Phản ánh Kiến nghị.\"</p>"
+            }
+          ],
+          "agentTools": "",
+          "agentKnowledgeDocumentStores": [],
+          "agentKnowledgeVSEmbeddings": "",
+          "agentEnableMemory": true,
+          "agentMemoryType": "allMessages",
+          "agentUserMessage": "",
+          "agentReturnResponseAs": "userMessage",
+          "agentStructuredOutput": "",
+          "agentUpdateState": [
+            {
+              "key": "output",
+              "value": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"output\" data-label=\"output\">{{ output }}</span> </p>"
+            }
+          ],
+          "agentModelConfig": {
+            "credential": "",
+            "region": "asia-northeast1",
+            "modelName": "gemini-2.5-flash",
+            "customModelName": "",
+            "temperature": 0.9,
+            "allowImageUploads": "",
+            "streaming": true,
+            "maxOutputTokens": "",
+            "topP": "",
+            "topK": "",
+            "thinkingBudget": "",
+            "agentModel": "chatGoogleVertexAI"
+          }
+        },
+        "outputAnchors": [
+          {
+            "id": "agentAgentflow_0-output-agentAgentflow",
+            "label": "Agent",
+            "name": "agentAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 199,
+      "height": 72,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 298.1733790828993,
+        "y": 279.68266335608854
+      },
+      "dragging": false
+    },
+    {
+      "id": "conditionAgentAgentflow_0",
+      "position": {
+        "x": -26.5,
+        "y": 79.45144273205989
+      },
+      "data": {
+        "id": "conditionAgentAgentflow_0",
+        "label": "Condition Agent 0",
+        "version": 1.1,
+        "name": "conditionAgentAgentflow",
+        "type": "ConditionAgent",
+        "color": "#ff8fab",
+        "baseClasses": [
+          "ConditionAgent"
+        ],
+        "category": "Agent Flows",
+        "description": "Utilize an agent to split flows based on dynamic conditions",
+        "inputParams": [
+          {
+            "label": "Model",
+            "name": "conditionAgentModel",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "loadConfig": true,
+            "id": "conditionAgentAgentflow_0-input-conditionAgentModel-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Instructions",
+            "name": "conditionAgentInstructions",
+            "type": "string",
+            "description": "A general instructions of what the condition agent should do",
+            "rows": 4,
+            "acceptVariable": true,
+            "placeholder": "Determine if the user is interested in learning about AI",
+            "id": "conditionAgentAgentflow_0-input-conditionAgentInstructions-string",
+            "display": true
+          },
+          {
+            "label": "Input",
+            "name": "conditionAgentInput",
+            "type": "string",
+            "description": "Input to be used for the condition agent",
+            "rows": 4,
+            "acceptVariable": true,
+            "default": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"question\" data-label=\"question\">{{ question }}</span> </p>",
+            "id": "conditionAgentAgentflow_0-input-conditionAgentInput-string",
+            "display": true
+          },
+          {
+            "label": "Scenarios",
+            "name": "conditionAgentScenarios",
+            "description": "Define the scenarios that will be used as the conditions to split the flow",
+            "type": "array",
+            "array": [
+              {
+                "label": "Scenario",
+                "name": "scenario",
+                "type": "string",
+                "placeholder": "User is asking for a pizza"
+              }
+            ],
+            "default": [
+              {
+                "scenario": ""
+              },
+              {
+                "scenario": ""
+              }
+            ],
+            "id": "conditionAgentAgentflow_0-input-conditionAgentScenarios-array",
+            "display": true
+          },
+          {
+            "label": "Override System Prompt",
+            "name": "conditionAgentOverrideSystemPrompt",
+            "type": "boolean",
+            "description": "Override initial system prompt for Condition Agent",
+            "optional": true,
+            "id": "conditionAgentAgentflow_0-input-conditionAgentOverrideSystemPrompt-boolean",
+            "display": true
+          },
+          {
+            "label": "Node System Prompt",
+            "name": "conditionAgentSystemPrompt",
+            "type": "string",
+            "rows": 4,
+            "optional": true,
+            "acceptVariable": true,
+            "default": "<p>You are part of a multi-agent system designed to make agent coordination and execution easy. Your task is to analyze the given input and select one matching scenario from a provided set of scenarios.</p>\n    <ul>\n        <li><strong>Input</strong>: A string representing the user's query, message or data.</li>\n        <li><strong>Scenarios</strong>: A list of predefined scenarios that relate to the input.</li>\n        <li><strong>Instruction</strong>: Determine which of the provided scenarios is the best fit for the input.</li>\n    </ul>\n    <h2>Steps</h2>\n    <ol>\n        <li><strong>Read the input string</strong> and the list of scenarios.</li>\n        <li><strong>Analyze the content of the input</strong> to identify its main topic or intention.</li>\n        <li><strong>Compare the input with each scenario</strong>: Evaluate how well the input's topic or intention aligns with each of the provided scenarios and select the one that is the best fit.</li>\n        <li><strong>Output the result</strong>: Return the selected scenario in the specified JSON format.</li>\n    </ol>\n    <h2>Output Format</h2>\n    <p>Output should be a JSON object that names the selected scenario, like this: <code>{\"output\": \"<selected_scenario_name>\"}</code>. No explanation is needed.</p>\n    <h2>Examples</h2>\n    <ol>\n       <li>\n            <p><strong>Input</strong>: <code>{\"input\": \"Hello\", \"scenarios\": [\"user is asking about AI\", \"user is not asking about AI\"], \"instruction\": \"Your task is to check if the user is asking about AI.\"}</code></p>\n            <p><strong>Output</strong>: <code>{\"output\": \"user is not asking about AI\"}</code></p>\n        </li>\n        <li>\n            <p><strong>Input</strong>: <code>{\"input\": \"What is AIGC?\", \"scenarios\": [\"user is asking about AI\", \"user is asking about the weather\"], \"instruction\": \"Your task is to check and see if the user is asking a topic about AI.\"}</code></p>\n            <p><strong>Output</strong>: <code>{\"output\": \"user is asking about AI\"}</code></p>\n        </li>\n        <li>\n            <p><strong>Input</strong>: <code>{\"input\": \"Can you explain deep learning?\", \"scenarios\": [\"user is interested in AI topics\", \"user wants to order food\"], \"instruction\": \"Determine if the user is interested in learning about AI.\"}</code></p>\n            <p><strong>Output</strong>: <code>{\"output\": \"user is interested in AI topics\"}</code></p>\n        </li>\n    </ol>\n    <h2>Note</h2>\n    <ul>\n        <li>Ensure that the input scenarios align well with potential user queries for accurate matching.</li>\n        <li>DO NOT include anything other than the JSON in your response.</li>\n    </ul>",
+            "description": "Expert use only. Modifying this can significantly alter agent behavior. Leave default if unsure",
+            "show": {
+              "conditionAgentOverrideSystemPrompt": true
+            },
+            "id": "conditionAgentAgentflow_0-input-conditionAgentSystemPrompt-string",
+            "display": false
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "conditionAgentModel": "chatOpenAI",
+          "conditionAgentInstructions": "<p>Bạn là Trợ lý AI phân loại ý định cho \"Hệ thống Phản ánh, kiến nghị quy định pháp luật\". Nhiệm vụ của bạn là phân tích câu hỏi đầu vào và phân loại nó vào đúng đối tượng người dùng dựa trên ngữ cảnh nghiệp vụ.</p><p>Hãy phân tích câu hỏi và trả về kết quả dưới dạng JSON theo quy tắc sau:</p><p>DANH SÁCH PHÂN LOẠI (CLASSES):</p><p>1. SOCIAL</p><p>- Định nghĩa: Các câu chào hỏi, cảm ơn, kiểm tra kết nối hoặc các câu hỏi xã giao không liên quan đến nghiệp vụ hệ thống hoặc là những câu hỏi báo lỗi hệ thống, ứng dũng</p><p>- Ví dụ: \"Xin chào\", \"Alo\", \"Cảm ơn em\", \"Bạn là ai?\", \"Server đang bị lỗi\", \"Sao nó tải lâu thế\"</p><p>2. CITIZEN_QUERY (Dành cho Người dân/Doanh nghiệp)</p><p>- Định nghĩa: Các câu hỏi liên quan đến việc TẠO và THEO DÕI phản ánh từ góc độ người dân.</p><p>- Từ khóa nhận diện đặc trưng (dựa trên tài liệu):</p><p>+ Đăng nhập bằng \"VNeID\" hoặc tài khoản định danh cá nhân.</p><p>+ Các hành động: \"Tạo phản ánh\", \"Gửi kiến nghị\", \"Theo dõi tình trạng\", \"Phản ánh của tôi\", \"Tra cứu\".</p><p>+ Nền tảng: App \"Phản ánh, kiến nghị về VBQPPL\" hoặc web \"paknvbqppl.moj.gov.vn\".</p><p>+ Quan tâm đến: Thời hạn 15 ngày (để nhận câu trả lời), bảo mật thông tin cá nhân.</p><p>- Ví dụ:</p><p>+ \"Làm sao để tôi gửi phản ánh về luật đất đai?\"</p><p>+ \"Tôi đăng nhập bằng VNeID như thế nào?\"</p><p>+ \"Tôi muốn xem lại các kiến nghị đã gửi.\"</p><p>+ \"Thông tin của tôi có bị lộ không?\"</p><p>3. OFFICER_QUERY (Dành cho Cán bộ/Công chức)</p><p>- Định nghĩa: Các câu hỏi liên quan đến QUY TRÌNH XỬ LÝ, QUẢN TRỊ và BÁO CÁO số liệu.</p><p>- Từ khóa nhận diện đặc trưng (dựa trên tài liệu):</p><p>+ Đăng nhập vào hệ thống \"Xử lý PA\".</p><p>+ Các hành động: \"Tiếp nhận\", \"Phân công\", \"Chuyển xử lý\", \"Đánh giá hợp lệ/không hợp lệ\", \"Từ chối phản ánh\".</p><p>+ Chức năng quản lý: \"Thống kê\", \"Báo cáo\", \"Biểu đồ\", \"Tỷ lệ quá hạn\", \"Mức độ hài lòng\".</p><p>+ Nền tảng: App \"Xử lý PA...\" hoặc web \"paknvbqppl-xl.moj.gov.vn\".</p><p>- Ví dụ:</p><p>+ \"Làm thế nào để tiếp nhận phản ánh mới?\"</p><p>+ \"Nếu phản ánh không hợp lệ thì trả lại thế nào?\"</p><p>+ \"Cách xem thống kê các phản ánh đã xử lý trong tháng này.\"</p><p>+ \"Tôi muốn chuyển phản ánh này sang đơn vị khác.\"</p><p>4. UNCLEAR_ROLE (Chưa rõ vai trò)</p><p>- Định nghĩa: Câu hỏi chung chung, thiếu ngữ cảnh, từ ngữ mà cả Cán bộ và Người dân đều có thể dùng.</p><p>- Các trường hợp phổ biến trong tài liệu:</p><p>+ \"Làm sao để đăng nhập?\" (Cả 2 đều cần đăng nhập nhưng cách khác nhau).</p><p>+ \"Xem danh sách phản ánh ở đâu?\" (Người dân xem tham khảo, Cán bộ xem để xử lý).</p><p>+ \"Quên mật khẩu\", \"Không vào được hệ thống\".</p><p>+ \"Tải ứng dụng ở đâu?\" (Có 2 ứng dụng khác nhau cho 2 đối tượng).</p><p>QUY TẮC XỬ LÝ:</p><p>- Chỉ trả về duy nhất định dạng JSON.</p><p>- Nếu câu hỏi mơ hồ nhưng chứa từ khóa \"xử lý\", \"thống kê\", \"tiếp nhận\" -&gt; Ưu tiên OFFICER_QUERY.</p><p>- Nếu câu hỏi mơ hồ nhưng chứa từ khóa \"gửi\", \"của tôi\", \"bao lâu thì được trả lời\" -&gt; Ưu tiên CITIZEN_QUERY.</p><p></p><p><strong>ĐỊNH DẠNG PHẢN HỒI</strong></p><p>JSON</p><pre><code>{ \"output\": \"SOCIAL\" }</code></pre><p>hoặc</p><p>JSON</p><pre><code>{ \"output\": \"CITIZEN_QUERY\" }</code></pre><p>hoặc</p><p>JSON</p><pre><code>{ \"output\": \"OFFICER_QUERY\" }\n\nhoặc\n\nJSON\n\n{ \"output\": \"UNCLEAR_ROLE\" }</code></pre>",
+          "conditionAgentInput": "<p>Câu hỏi của người dùng :<span class=\"variable\" data-type=\"mention\" data-id=\"question\" data-label=\"question\">{{ question }}</span></p><p>Lịch sử trò chuyện với người dùng: <span class=\"variable\" data-type=\"mention\" data-id=\"chat_history\" data-label=\"chat_history\">{{ chat_history }}</span></p>",
+          "conditionAgentScenarios": [
+            {
+              "scenario": "SOCIAL"
+            },
+            {
+              "scenario": "CITIZEN_QUERY"
+            },
+            {
+              "scenario": "OFFICER_QUERY"
+            },
+            {
+              "scenario": "UNCLEAR_ROLE"
+            }
+          ],
+          "conditionAgentOverrideSystemPrompt": "",
+          "conditionAgentModelConfig": {
+            "credential": "",
+            "modelName": "gpt-5-mini",
+            "temperature": 0.9,
+            "streaming": true,
+            "maxTokens": "",
+            "topP": "",
+            "frequencyPenalty": "",
+            "presencePenalty": "",
+            "timeout": "",
+            "strictToolCalling": "",
+            "stopSequence": "",
+            "basepath": "",
+            "proxyUrl": "",
+            "baseOptions": "",
+            "allowImageUploads": "",
+            "reasoning": "",
+            "conditionAgentModel": "chatOpenAI"
+          }
+        },
+        "outputAnchors": [
+          {
+            "id": "conditionAgentAgentflow_0-output-0",
+            "label": 0,
+            "name": 0,
+            "description": "Condition 0"
+          },
+          {
+            "id": "conditionAgentAgentflow_0-output-1",
+            "label": 1,
+            "name": 1,
+            "description": "Condition 1"
+          },
+          {
+            "id": "conditionAgentAgentflow_0-output-2",
+            "label": 2,
+            "name": 2,
+            "description": "Condition 2"
+          },
+          {
+            "id": "conditionAgentAgentflow_0-output-3",
+            "label": 3,
+            "name": 3,
+            "description": "Condition 3"
+          }
+        ],
+        "outputs": {
+          "conditionAgentAgentflow": ""
+        },
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 189,
+      "height": 120,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -26.5,
+        "y": 79.45144273205989
+      },
+      "dragging": false
+    },
+    {
+      "id": "agentAgentflow_1",
+      "position": {
+        "x": 295.69468199074424,
+        "y": 148.41015097131185
+      },
+      "data": {
+        "id": "agentAgentflow_1",
+        "label": "Người dân",
+        "version": 3.2,
+        "name": "agentAgentflow",
+        "type": "Agent",
+        "color": "#4DD0E1",
+        "baseClasses": [
+          "Agent"
+        ],
+        "category": "Agent Flows",
+        "description": "Dynamically choose and utilize tools during runtime, enabling multi-step reasoning",
+        "inputParams": [
+          {
+            "label": "Model",
+            "name": "agentModel",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "loadConfig": true,
+            "id": "agentAgentflow_1-input-agentModel-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Messages",
+            "name": "agentMessages",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Role",
+                "name": "role",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "System",
+                    "name": "system"
+                  },
+                  {
+                    "label": "Assistant",
+                    "name": "assistant"
+                  },
+                  {
+                    "label": "Developer",
+                    "name": "developer"
+                  },
+                  {
+                    "label": "User",
+                    "name": "user"
+                  }
+                ]
+              },
+              {
+                "label": "Content",
+                "name": "content",
+                "type": "string",
+                "acceptVariable": true,
+                "generateInstruction": true,
+                "rows": 4
+              }
+            ],
+            "id": "agentAgentflow_1-input-agentMessages-array",
+            "display": true
+          },
+          {
+            "label": "OpenAI Built-in Tools",
+            "name": "agentToolsBuiltInOpenAI",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "Web Search",
+                "name": "web_search_preview",
+                "description": "Search the web for the latest information"
+              },
+              {
+                "label": "Code Interpreter",
+                "name": "code_interpreter",
+                "description": "Write and run Python code in a sandboxed environment"
+              },
+              {
+                "label": "Image Generation",
+                "name": "image_generation",
+                "description": "Generate images based on a text prompt"
+              }
+            ],
+            "show": {
+              "agentModel": "chatOpenAI"
+            },
+            "id": "agentAgentflow_1-input-agentToolsBuiltInOpenAI-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Gemini Built-in Tools",
+            "name": "agentToolsBuiltInGemini",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "URL Context",
+                "name": "urlContext",
+                "description": "Extract content from given URLs"
+              },
+              {
+                "label": "Google Search",
+                "name": "googleSearch",
+                "description": "Search real-time web content"
+              },
+              {
+                "label": "Code Execution",
+                "name": "codeExecution",
+                "description": "Write and run Python code in a sandboxed environment"
+              }
+            ],
+            "show": {
+              "agentModel": "chatGoogleGenerativeAI"
+            },
+            "id": "agentAgentflow_1-input-agentToolsBuiltInGemini-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Anthropic Built-in Tools",
+            "name": "agentToolsBuiltInAnthropic",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "Web Search",
+                "name": "web_search_20250305",
+                "description": "Search the web for the latest information"
+              },
+              {
+                "label": "Web Fetch",
+                "name": "web_fetch_20250910",
+                "description": "Retrieve full content from specified web pages"
+              }
+            ],
+            "show": {
+              "agentModel": "chatAnthropic"
+            },
+            "id": "agentAgentflow_1-input-agentToolsBuiltInAnthropic-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Tools",
+            "name": "agentTools",
+            "type": "array",
+            "optional": true,
+            "array": [
+              {
+                "label": "Tool",
+                "name": "agentSelectedTool",
+                "type": "asyncOptions",
+                "loadMethod": "listTools",
+                "loadConfig": true
+              },
+              {
+                "label": "Require Human Input",
+                "name": "agentSelectedToolRequiresHumanInput",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "id": "agentAgentflow_1-input-agentTools-array",
+            "display": true
+          },
+          {
+            "label": "Knowledge (Document Stores)",
+            "name": "agentKnowledgeDocumentStores",
+            "type": "array",
+            "description": "Give your agent context about different document sources. Document stores must be upserted in advance.",
+            "array": [
+              {
+                "label": "Document Store",
+                "name": "documentStore",
+                "type": "asyncOptions",
+                "loadMethod": "listStores"
+              },
+              {
+                "label": "Describe Knowledge",
+                "name": "docStoreDescription",
+                "type": "string",
+                "generateDocStoreDescription": true,
+                "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                "rows": 4
+              },
+              {
+                "label": "Return Source Documents",
+                "name": "returnSourceDocuments",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "optional": true,
+            "id": "agentAgentflow_1-input-agentKnowledgeDocumentStores-array",
+            "display": true
+          },
+          {
+            "label": "Knowledge (Vector Embeddings)",
+            "name": "agentKnowledgeVSEmbeddings",
+            "type": "array",
+            "description": "Give your agent context about different document sources from existing vector stores and embeddings",
+            "array": [
+              {
+                "label": "Vector Store",
+                "name": "vectorStore",
+                "type": "asyncOptions",
+                "loadMethod": "listVectorStores",
+                "loadConfig": true
+              },
+              {
+                "label": "Embedding Model",
+                "name": "embeddingModel",
+                "type": "asyncOptions",
+                "loadMethod": "listEmbeddings",
+                "loadConfig": true
+              },
+              {
+                "label": "Knowledge Name",
+                "name": "knowledgeName",
+                "type": "string",
+                "placeholder": "A short name for the knowledge base, this is useful for the AI to know when and how to search for correct information"
+              },
+              {
+                "label": "Describe Knowledge",
+                "name": "knowledgeDescription",
+                "type": "string",
+                "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                "rows": 4
+              },
+              {
+                "label": "Return Source Documents",
+                "name": "returnSourceDocuments",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "optional": true,
+            "id": "agentAgentflow_1-input-agentKnowledgeVSEmbeddings-array",
+            "display": true
+          },
+          {
+            "label": "Enable Memory",
+            "name": "agentEnableMemory",
+            "type": "boolean",
+            "description": "Enable memory for the conversation thread",
+            "default": true,
+            "optional": true,
+            "id": "agentAgentflow_1-input-agentEnableMemory-boolean",
+            "display": true
+          },
+          {
+            "label": "Memory Type",
+            "name": "agentMemoryType",
+            "type": "options",
+            "options": [
+              {
+                "label": "All Messages",
+                "name": "allMessages",
+                "description": "Retrieve all messages from the conversation"
+              },
+              {
+                "label": "Window Size",
+                "name": "windowSize",
+                "description": "Uses a fixed window size to surface the last N messages"
+              },
+              {
+                "label": "Conversation Summary",
+                "name": "conversationSummary",
+                "description": "Summarizes the whole conversation"
+              },
+              {
+                "label": "Conversation Summary Buffer",
+                "name": "conversationSummaryBuffer",
+                "description": "Summarize conversations once token limit is reached. Default to 2000"
+              }
+            ],
+            "optional": true,
+            "default": "allMessages",
+            "show": {
+              "agentEnableMemory": true
+            },
+            "id": "agentAgentflow_1-input-agentMemoryType-options",
+            "display": true
+          },
+          {
+            "label": "Window Size",
+            "name": "agentMemoryWindowSize",
+            "type": "number",
+            "default": "20",
+            "description": "Uses a fixed window size to surface the last N messages",
+            "show": {
+              "agentMemoryType": "windowSize"
+            },
+            "id": "agentAgentflow_1-input-agentMemoryWindowSize-number",
+            "display": false
+          },
+          {
+            "label": "Max Token Limit",
+            "name": "agentMemoryMaxTokenLimit",
+            "type": "number",
+            "default": "2000",
+            "description": "Summarize conversations once token limit is reached. Default to 2000",
+            "show": {
+              "agentMemoryType": "conversationSummaryBuffer"
+            },
+            "id": "agentAgentflow_1-input-agentMemoryMaxTokenLimit-number",
+            "display": false
+          },
+          {
+            "label": "Input Message",
+            "name": "agentUserMessage",
+            "type": "string",
+            "description": "Add an input message as user message at the end of the conversation",
+            "rows": 4,
+            "optional": true,
+            "acceptVariable": true,
+            "show": {
+              "agentEnableMemory": true
+            },
+            "id": "agentAgentflow_1-input-agentUserMessage-string",
+            "display": true
+          },
+          {
+            "label": "Return Response As",
+            "name": "agentReturnResponseAs",
+            "type": "options",
+            "options": [
+              {
+                "label": "User Message",
+                "name": "userMessage"
+              },
+              {
+                "label": "Assistant Message",
+                "name": "assistantMessage"
+              }
+            ],
+            "default": "userMessage",
+            "id": "agentAgentflow_1-input-agentReturnResponseAs-options",
+            "display": true
+          },
+          {
+            "label": "JSON Structured Output",
+            "name": "agentStructuredOutput",
+            "description": "Instruct the Agent to give output in a JSON structured schema",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "label": "Type",
+                "name": "type",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "String",
+                    "name": "string"
+                  },
+                  {
+                    "label": "String Array",
+                    "name": "stringArray"
+                  },
+                  {
+                    "label": "Number",
+                    "name": "number"
+                  },
+                  {
+                    "label": "Boolean",
+                    "name": "boolean"
+                  },
+                  {
+                    "label": "Enum",
+                    "name": "enum"
+                  },
+                  {
+                    "label": "JSON Array",
+                    "name": "jsonArray"
+                  }
+                ]
+              },
+              {
+                "label": "Enum Values",
+                "name": "enumValues",
+                "type": "string",
+                "placeholder": "value1, value2, value3",
+                "description": "Enum values. Separated by comma",
+                "optional": true,
+                "show": {
+                  "agentStructuredOutput[$index].type": "enum"
+                }
+              },
+              {
+                "label": "JSON Schema",
+                "name": "jsonSchema",
+                "type": "code",
+                "placeholder": "{\n    \"answer\": {\n        \"type\": \"string\",\n        \"description\": \"Value of the answer\"\n    },\n    \"reason\": {\n        \"type\": \"string\",\n        \"description\": \"Reason for the answer\"\n    },\n    \"optional\": {\n        \"type\": \"boolean\"\n    },\n    \"count\": {\n        \"type\": \"number\"\n    },\n    \"children\": {\n        \"type\": \"array\",\n        \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"value\": {\n                    \"type\": \"string\",\n                    \"description\": \"Value of the children's answer\"\n                }\n            }\n        }\n    }\n}",
+                "description": "JSON schema for the structured output",
+                "optional": true,
+                "hideCodeExecute": true,
+                "show": {
+                  "agentStructuredOutput[$index].type": "jsonArray"
+                }
+              },
+              {
+                "label": "Description",
+                "name": "description",
+                "type": "string",
+                "placeholder": "Description of the key"
+              }
+            ],
+            "id": "agentAgentflow_1-input-agentStructuredOutput-array",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "agentUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys"
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "agentAgentflow_1-input-agentUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "agentModel": "chatGoogleVertexAI",
+          "agentMessages": [
+            {
+              "role": "system",
+              "content": "<p>Bạn là Trợ lý ảo AI Hỗ trợ người dân sữ dụng \"Hệ thống Phản ánh, Kiến nghị Văn bản Quy phạm Pháp luật\" .</p><p>### NHIỆM VỤ CỐT LÕI:</p><p>Hỗ trợ người dùng sử dụng phần mềm dựa trên tài liệu hướng dẫn được cung cấp dưới đây.</p><p>### TÀI LIỆU HƯỚNG DẪN SỬ DỤNG (CONTEXT):</p><p>Dưới đây là toàn bộ hướng dẫn sử dụng hệ thống. Bạn hãy đọc kỹ và ghi nhớ để trả lời câu hỏi:</p><pre><code class=\"language-markdown\"># GIỚI THIỆU CHUNG\n\n- Tài liệu này áp dụng cho hướng dẫn sử dụng ứng dụng App Phản ánh, kiến nghị văn bản QPPL với các chức năng sau đây:\n\n1, App mobile PAKN\n\n- Thông tin tài khoản: Đăng nhập/ Đăng xuất tài khoản và các phương thức đăng nhập\n\n- Tạo phản ánh: Tạo phản ánh, kiến nghị.\n\n- Phản ánh của tôi: Người dùng xem lại những phản ánh của mình đã gửi đi, có thể nắm bắt được bộ phận ban ngành xử lý, tiến trình xử lý.\n\n- Danh sách phản ánh: Dùng xem thông tin các phản ánh đã được xử lý, người dùng có thể đọc khảm khảo.\n\n- Thay đổi mật khẩu: Thay đổi mật khẩu tài khoản đăng nhập.\n\n2, Web PAKN\n\n- Thông tin tài khoản: Đăng nhập/ Đăng xuất tài khoản và các phương thức đăng nhập/ Đăng ký tài khoản./Thay đổi mật khẩu tài khoản đăng nhập.\n\n- Tạo phản ánh: Người dùng thực hiện tạo phản ánh kiến nghị trên website phản ánh.\n\n- Phản ánh của tôi: Người dùng xem lại những phản ánh của mình đã gửi đi, có thể nắm bắt được bộ phận ban ngành xử lý, tiến trình xử lý.\n\n- Danh sách phản ánh: Dùng xem thông tin các phản ánh đã được xử lý, người dùng có thể đọc khảm khảo.\n\n- Trang chủ: Giao diện trang chủ\n\n- Giới thiệu: Giới thiệu về hệ thống\n\n- Hướng dẫn: Hướng dẫn người dân về cách sử dụng hệ thống\n\n# HƯỚNG DẪN CÀI ĐẶT APP PAKN\n\n# Cài đặt trên Apple Store\n\n- Người dùng sử dụng điện thoại hệ điều hành IOS có thể tải ứng dụng từ kho ứng dụng app Store bằng những bước sau:\n- __Bước 1:  __Người dùng truy cập vào ứng dụng App Store, tìm kiếm tên ứng dụng với tên “ Phản ánh kiến nghị văn bản QPPL\n- __Bước 2: __Sau khi nhập nội dung tìm kiếm, hiển thị lên icon sau :  ![]({{IMG_097}})\n\n![]({{IMG_098}})![]({{IMG_099}})\n\n- __Bước 3: __Thực hiện nhấn tải về/get để thực hiện tải về. Vui lòng kết nối Wifi hoặc cho phép tải xuống bằng dữ liệu di động,\n\n# Cài đặt trên CHPlay\n\n- Người dùng sử dụng điện thoại hệ điều hành android có thể tải ứng dụng từ kho ứng dụng CHPlay bằng những bước sau:\n- __Bước 1: __Người dùng truy cập vào ứng dụng CHPlay, tìm kiếm tên ứng dụng với tên”Phản ánh, kiến nghị VBQPPL”,.\n- __Bước 2: __Sau khi nhập vào nội dung và tìm kiếm, Danh sách sẽ hiển thị lên ứng dụng có biểu tượng sau: ![]({{IMG_100}})\n- Hiển thị lên danh sách sau:\n\n![]({{IMG_101}})\n\n- __Bước 3: __Người dùng chọn vào ứng dụng và thực hiện cài đặt ứng dụng về thiết bị. Vui lòng kết nối wifi hoặc cho phép tải về bằng dữ liệu di động để thực hiện tải về ứng dụng.\n\n![]({{IMG_102}})\n\n# A. CHỨC NĂNG CHO NGƯỜI DÂN, DOANH NGHIỆP, TỔ CHỨC, CƠ QUAN TRÊN APP PHẢN ÁNH, KIẾN NGHỊ.\n\n## Thông tin tài khoản\n\n### Đăng nhập bằng tài khoản số điện thoại, mật khẩu.\n\n- Mở app đã được cài đặt, tại trang đăng nhập App Phản ánh, kiến nghị văn bản QPPL\n- __Bước 1:__ Nhập thông tin đăng nhập\n\n__Tên tài khoản:__ Nhập theo số điện thoại đã đăng ký tài khoản được cung cấp (ví dụ “0952574615”)\n\n__Mật khẩu: __Nhập vào mật khẩu đã được cung cấp(đối với đăng nhập lần đầu) hoặc mật khẩu của tài khoản(ví dụ “BKav@2024”)\n\n- __Bước 2 - Đăng nhập:__ Chọn __\\[Đăng nhập\\]__ để đăng nhập hệ thống.\n\n![]({{IMG_103}})\n\n*Màn hình đăng nhập*\n\n### Đăng nhập bằng xác thực định danh VNeID trên điện thoại.\n\n- __Bước 1: __Chọn đăng nhập bằng tài khoản định danh điện tử VNeID.\n- __Bước 2: __Tại màn hình đăng nhập của hệ thống VNeID người dùng chọn đăng nhập bằng VneID sau khi đăng nhập thành công thì sẽ phải chọn cá nhân hoặc tổ chức.\n\n### Đăng xuất.\n\n- __Bước 1: __Người dùng chọn biểu tượng cài đặt tại phần right menu, chọn biểu tượng ![]({{IMG_104}}) để truy cập màn hình cài đặt.\n- __Bước 2: __Người dùng chọn biểu tượng đăng xuất tại mục cài đặt để tiến hành đăng xuất ra khỏi hệ thống, người dùng chọn biểu tượng\n\n  ![]({{IMG_105}})![]({{IMG_106}})![]({{IMG_107}})![]({{IMG_108}})\n\n*Màn hình cài đặt.*\n\n## Tạo phản ánh\n\n### Tạo phản ánh với cấp trung ương.\n\n- __Bước 1: __Người dùng truy cập biểu tượng ![]({{IMG_109}}) trên màn hình trang chủ hoặc biểu tượng ![]({{IMG_110}})phía dưới thanh công cụ.\n\n                                        ![]({{IMG_111}})\n\n\t\t\t\t   *Màn hình trang chủ*\n\n- __Bước 2: __Người dùng chọn ![]({{IMG_112}}) tại màn hình tạo phản ánh\n-  \t\t\t![]({{IMG_113}})\n- __Bước 3: __Người dùng nhập vào các thông tin sau :\n- __Văn bản__ : Người dùng nhập vào thông tin văn bản cần phản ánh, hệ thống sẽ tự động trả về thông tin văn bản\n\n                               ![]({{IMG_114}})\n\n\t\t\t*Màn hình chi tiết văn bản*\n\n__ __Sau khi chọn văn bản, hệ thống sẽ hiện ra các phản ánh đã được xử lý liên quan đến văn bản đang được người dùng chọn để xử lý, người dùng có thể xem trước khi phản ánh để tham khảo\n\n- __Bước 4: __Người dùng chọn điều khoản văn bản, đối với thông tin này sẽ là bắt buộc hoặc không bắt buộc.\n- __Bước 5: __Người dùng nhập vào nội dung phản ánh về văn bản, về văn bản, điều khoản của văn bản.\n- __Bước 6: __Sau khi nhập xong nội dung, người dùng chọn cơ quan tiếp nhận.\n- __Bước 7: __Người dùng chọn đối tượng phản ánh, kiến nghị là cá nhân, doanh nghiệp, tổ chức, cơ quan. Sau khi chọn xong đối tượng, người dùng nhập vào tên cá nhân, doanh nghiệp, tổ chức, cơ quan theo đối tượng người dùng chọn.\n- __Bước 8: __Sau khi nhập xong các thông tin bắt buộc, người dùng thực hiện gửi ý kiến.\n\n        ![]({{IMG_115}})            ![]({{IMG_116}})\n\n\t \t   *Màn hình gửi phản ánh theo cấp xử lý trung ương*\n\n### Tạo phản ánh với cấp địa phương.\n\n- Người dùng có thể báo cáo văn bản do cấp địa phương đưa ra nếu cảm thấy chưa phù hợp bằng cách:\n- __Bước 1: __Người dùng truy cập biểu tượng ![]({{IMG_117}}) trê màn hình trang chủ hoặc biểu tượng ![]({{IMG_118}})phía dưới thanh công cụ.\n- __Bước 2: __Người dùng chọn ![]({{IMG_119}}) tại màn hình tạo phản ánh.\n- __Bước 3: __Người dùng chọn địa phương đang muốn phản ánh.\n- __Bước 4: __Người dùng nhập vào các thông tin sau :\n- __Văn bản__ : Người dùng nhập vào thông tin văn bản cần phản ánh, hệ thống sẽ tự động trả về thông tin văn bản\n\n                               ![]({{IMG_120}})\n\n\t\t\t*Màn hình chi tiết văn bản*\n\n__ __Sau khi chọn văn bản, hệ thống sẽ hiện ra các phản ánh đã được xử lý liên quan đến văn bản đang được người dùng chọn để xử lý, người dùng có thể xem trước khi phản ánh để tham khảo\n\n- __Bước 5: __Người dùng chọn điều khoản văn bản, đối với thông tin này sẽ là bắt buộc, người dùng chỉ được gõ khi không hiển thị văn bản đang tìm kiếm(Mất kết nối đến cơ sở dữ liệu văn bản quốc gia)\n- __Bước 6: __Người dùng nhập vào nội dung phản ánh về văn bản, về văn bản, điều khoản của văn bản.\n- __Bước 7: __Sau khi nhập xong nội dung, người dùng chọn cơ quan tiếp nhận.\n- __Bước 8: __Người dùng chọn đối tượng phản ánh, kiến nghị là cá nhân, doanh nghiệp, tổ chức, cơ quan. Sau khi chọn xong đối tượng, người dùng nhập vào tên cá nhân, doanh nghiệp, tổ chức, cơ quan theo đối tượng người dùng chọn.\n- __Bước 9: __Sau khi nhập xong các thông tin bắt buộc, người dùng thực hiện gửi ý kiến.\n-                     ![]({{IMG_121}})![]({{IMG_122}})\n\n## Phản ánh của tôi.\n\n### Danh sách phản ánh của tôi.\n\n- Người dùng truy cập màn hình phản ánh bằng cách chọn biểu tượng ![]({{IMG_123}})tại thanh menu phía dưới màn hình. Tại màn hình  này sẽ hiển thị lên danh sách phản ánh với các thông tin sau :\n- __Tên nghị định.__\n- __Mã phản ánh__\n- __Nội dung phản ánh__\n- __Trạng thái phản ánh__\n- __Thời gian phản ánh__\n- Người dùng chọn bộ lọc trạng thái với 2 loại trạng thái:\n- __Chưa xử lý__\n- __Đã xử lý.__\n\n__                        ![]({{IMG_124}})__\n\n*     Màn hình phản ánh của tôi*\n\n### Tiến trình phản ánh.\n\n- Người dùng có thể xem trạng thái, tiến trình xử lý tại màn hình này một cách chi tiết từng quá trình xử lý của đơn phản ánh của mình.\n- Người dùng có thể nắm bắt được đơn phản ánh của mình đang được cơ quan ban ngành nào xử lý.\n- Để truy cập vào màn hình chi tiết thì người dùng làm theo những bước sau:\n- __Bước 1: __Người dùng chọn biểu tượng ![]({{IMG_125}})tại menu phía dưới màn hình trang chủ, người dùng sẽ được đưa tới màn hình danh sách phản ánh của tôi.\n- __Bước 2: __Người dùng chọn vào đơn phản ánh muốn xem tiến trình, hoặc có thể dùng bộ lọc theo trạng thái để tìm kiếm nhanh.\n- __Bước 3: __Sau khi người dùng đã chọn được đơn phản ánh muốn xem tiến trình, màn hình sẽ hiển thị lên thông tin chi tiết của phản ánh với các nội dung sau:\n- __Trạng thái của đơn phản ánh.__\n- __Tên văn bản phản ánh__\n- __Nội dung phản ánh__\n- __Tiến trình xử lý__\n\n__                                ![]({{IMG_126}})__\n\n*\t\t\t          màn hình chi tiết phản ánh chưa được trả lời*\n\n- Đối với các phản ánh đã được trả lời người sẽ có thêm thông tin:\n- __Kết quả xử lý__\n- __Thời gian xử lý__\n- __Nội dung xử lý __\n- __File đính kèm __\n- __Đánh giá phản ánh__\n\n__                               ![]({{IMG_127}})__\n\n*\t\t\t\t    Màn hình chi tiết phản ánh đã trả lời*\n\n### Đánh giá trả lời phản ánh\n\n- Sau khi đơn phản ánh của người dùng được cơ chức năng có thẩm quyền, được phân công trả lời. Người dùng có thể vào màn hình xem chi tiết phản ánh để xem thông tin trả lời phản ánh của cơ quan chức năng liên quan. Người dùng có thể thực hiện đánh giá câu trả lời theo mức độ hài lòng của mình, bao gồm:\n- __Rất hài lòng__\n- __Hài lòng__\n- __Bình thường__\n- __Không hài lòng__\n- __Rất không hài lòng. __\n- Để thực hiện đánh giá cẩ trả lời cho phản ánh của mình thì người dùng truy cập các bước sau:\n- __Bước 1: __Sau khi người dùng truy cập vào màn hình danh sách của tôi, thì màn hình sẽ hiện lên danh sách phản ánh của cá nhân đó. Người dùng chọn bộ lọc để lấy ra các phản ánh có trạng thái đã xử lý.\n- __Bước 2: __Người dùng chọn đơn xử lý có trạng thái đã được xử lý, sau đó hệ thống sẽ đưa người dùng vào màn hình chi tiết.\n- __Bước 3: __Tại màn hình chi tiết phản ánh, mục dánh giá. Người dùng thực hiện đánh giá câu trả lời với những mức độ sau :\n- __Rất hài lòng__\n- __Hài lòng__\n- __Bình thường__\n- __Không hài lòng__\n- __Rất không hài lòng. __\n- __Bước 4: __Sau khi người dùng chọn số sao tương ứng với mức độ đánh giá, người dùng. click vào button ![]({{IMG_128}}) để ghi nhận kết quả đánh giá. Chọn button  ![]({{IMG_129}}) để hủy đánh giá kết quả.\n\n__   ![]({{IMG_130}})![]({{IMG_131}})__\n\n*Màn hình đánh giá câu trả lời phản ánh.*\n\n- __Lưu ý : __Đối với các phản ánh, kiến nghị đã được xử lý thì người dùng mới được phép đánh giá phản ánh, kiến nghị. Đối với các phản ánh, kiến nghị ở trạng thái đang xử lý thì người dùng không thể đánh giá.\n- Người dùng chỉ có thể đánh giá các đơn phản ánh, kiến nghị tại màn hình chức năng phản ánh của tôi. Các màn hình chức năng khác người dùng chỉ có thể xem chi tiết và không thể đánh giá.\n- Người dùng chỉ được đánh giá 1 lần cho 1 phản ánh.\n\n## Danh sách phản ánh\n\n### Tra cứu phản ánh\n\n- Người dùng có thể thực hiện tra cứu phản ánh tại màn hình danh sách phản ánh với các nội dung phản ánh cụ thể như :\n- __Mã phản ánh __\n- __Tên văn bản__\n\n__                        ![]({{IMG_132}})__\n\n*Màn hình tìm kiếm theo tên văn bản phản ánh*\n\n__\t\t\t             ![]({{IMG_133}})__\n\n*      Màn hình tìm kiếm theo mã phản ánh*\n\n- Ngoài ra người dùng có thể tìm kiếm bằng bộ lọc với các thuộc tính như:\n- __Cấp xử lý__\n- __Cơ quan tiếp nhận__\n- __Bước 1: __Người dùng chọn cấp xử lý để tìm kiếm theo cấp xử lý là trung ương hoặc địa phương.\n\n                                    ![]({{IMG_134}})\n\n\t\t*Màn hình bộ lọc theo cấp xử lý trung ương*\n\n- __Bước 2: __Người dùng có thể lọc chi tiết hơn theo cơ quan tiếp nhận.\n\n![]({{IMG_135}})![]({{IMG_136}})\n\n*       Màn hình lọc theo cơ quan tiếp nhận*\n\n- __Lưu ý __: Người dùng có thể tìm kiếm theo mã phản ánh, tên văn bản có thể viết tắt. Hiện tại đối với phản ánh tại danh sách tìm kiếm của danh sách phản ánh thì người dùng không thể đánh giá.\n- Danh sách chỉ hiển thị những phản ánh đã được xử lý. Những phản ánh chưa được xử lý người dùng vui lòng truy cập phản ánh của tôi để xem.\n- Đối với bộ lọc cơ quan tiếp nhận, bắt buộc bạn phải chọn cấp xử lý thì mới có thể chọn được cơ quan tiếp nhận. Cơ quan tiếp nhận sẽ được load theo cấp xử lý.\n\n### Chi tiết phản ánh\n\n- Tại màn hình chi tiết phản ánh, người dùng có thể xem được nội dung chi tiết của đơn phản ánh, tiến trình xử lý, kết quả xử lý, cơ quan ban ngành xử lý và thời gian.\n- Các bước để xem chi tiết của một phản ánh tại màn hình danh sách phản ánh :\n- __Bước 1: __Người dùng có thể tìm phản ánh bằng cách tìm kiếm phản ánh bằng mã phản ánh hoặc tên văn bản. Ngoài ra người dùng có thể dùng bộ lọc để có thể tìm phản ánh theo cấp xử lý hoặc cơ quan tiếp nhận.\n- __Bước 2: __Chọn phản ánh muốn xem trên danh sách tìm kiếm, hệ thống sẽ đưa người dùng tới màn hình chi tiết sau :\n\n \t\t![]({{IMG_137}})![]({{IMG_138}})\t\t\t\t*Màn hình chi tiết phản ánh *\n\n- Tại màn hình chi tiết phản ánh, người dùng có thẻ xem phản ánh dưới dạng văn bản Docs, PDF phục vụ cho những văn bản, công văn được cơ quan xử lý gửi tới.\n\n- __Lưu ý: __Người dùng không thể đánh giá phản ánh tại màn hình này. Vui lòng truy cập màn hình phản ánh xử lý để đánh giá.\n\n## Thay đổi mật khẩu\n\n- Chức năng thay đổi mật khẩu phục vụ cho người dùng thay đổi thông tin đăng nhập làm tăng tính bảo mật cho hệ thống.\n- Để đến được giao diện đổi mật khẩu, người dùng truy cập theo đường dẫn:\n- Cài đặt -&gt; thay đổi mật khẩu. Giao diện đổi mật khẩu sẽ hiển thị như sau:\n\n![]({{IMG_139}})\n\n*  Màn hình thay đổi mật khẩu *\n\n- Để đổi được mật khẩu, người dùng làm theo các bước sau:\n- __Bước 1: __Nhập vào mật khẩu hiện tại.\n- __Bước 2: __Người dùng nhập vào mật khẩu mới với các ký tự và yêu cầu bảo mật đảm bảo đầy đủ thì mới có thể thực hiện đổi được.\n- __Bước 3: __Người dùng nhập lại mật khẩu mới một lần nữa để xác định đã nhập đúng mật khẩu muốn đổi.\n- __Bước 4: __Sau khi người dùng nhập mật khẩu cũ và mới xong, người dùng nhấn button Thay đổi mật khẩu ![]({{IMG_140}}) hệ thống sẽ hiển thị một thông báo như sau:\n\n![]({{IMG_141}})\n\n        *Màn hình thông báo thay đổi mật khẩu thành công.*\n\n- Sau khi đổi mật khẩu thành công, người dùng vui lòng đăng nhập lại hệ thống bằng mật khẩu mới.\n- __Lưu ý: __ Người dùng cần nhập thông tin mật khẩu với định dạng ký tự được yêu cầu để được đảm bảo về vấn đề bảo mật tài khoản.\n\n# B. CHỨC NĂNG CHO NGƯỜI DÂN, DOANH NGHIỆP, TỔ CHỨC, CƠ QUAN TRÊN WEBSITE PHẢN ÁNH, KIẾN NGHỊ.\n\n# Thông tin tài khoản\n\n## Đăng ký\n\n- Người dùng truy cập vào đường dẫn [https://paknvbqppl.moj.gov.vn](https://paknvbqppl.moj.gov.vn/) để được trả tới màn hình trang chủ website phản ánh, kiến nghị. Màn hình trang chủ sẽ xuất hiện :\n\n*  Màn hình trang chủ website phải ánh, kiến nghị văn bản QPPL*\n\n![]({{IMG_142}})![]({{IMG_143}})\n\n- Để đăng ký tài khoản, người dùng thực hiện theo các bước sau:\n- __Bước 1: __Chọn biểu tượng đăng ký trên góc trên phía bên phải với biểu tượng ![]({{IMG_144}}), hệ thống sẽ hiển thị lên một popup cho người dùng có thể nhập vào thông tin đăng ký tài khoản bao gồm các thông tin sau:\n- __Họ và tên __\n- __Email__\n- __Số điện thoại__\n\n__![]({{IMG_145}})__\n\n*            Màn hình đăng ký tài khoản*\n\n- __Bước 2: __Người dùng nhập vào các thông tin được hiển thị trên màn hình đăng ký, nội dung nhập vào phải đảm bảo chính xác thì hệ thống mới có thể ghi nhận và cấp tài khoản, mật khẩu.\n- __Bước 3: __Sau khi người dùng thực hiện nhập đầy đủ thông tin dữ liệu, người dùng thực hiện việc đăng ký tài  khoản bằng cách chọn button đăng ký ![]({{IMG_146}})trên màn hình. Hệ thống sẽ gửi cho bạn một email cung cấp tài khoản mật khẩu. nếu người dùng không muốn đăng ký nữa thì có thể thực hiện hủy đăng ký bằng cách chọn button ![]({{IMG_147}}).\n- Khi người dùng đăng ký thành công, hệ thống sẽ trả về một thông báo với nội dung sau :\n\n![]({{IMG_148}})\n\n*     Màn hình thông báo đăng ký tài khoản thành công*\n\n- __Lưu ý : __ Người dùng phải nhập đúng định dạng email, số điện thoại thì mới có thể nhận được mật khẩu của tài khoản. Nếu người dùng nhập sai. hệ thống sẽ không gửi thông báo về hệ thống.\n\n## Đăng nhập\n\n- Để vào website phản ánh, người dùng truy cập đường đẫn [https://paknvbqppl.moj.gov.vn](https://paknvbqppl.moj.gov.vn) . sau khi người dùng truy cập vào đường dẫn này, hệ thống sẽ trả về thông tin như sau:\n\n![]({{IMG_149}})\n\n\t\t\t*Màn hình giao diện trang chủ*\n\n- Để đăng nhập vào hệ thống người dùng làm theo các bước sau:\n- __Bước 1: __Người dùng nhấp vào button đăng nhập ![]({{IMG_150}}), hệ thống sẽ trả về cửa sổ popup đăng nhập sau:\n\n                                           ![]({{IMG_151}})\n\n\t\t\t\t*Màn hình đăng nhập*\n\n- __Bước 2: __Người dùng nhập vào thông tin đăng nhập bao gồm :\n- Tên đăng nhập\n- Mật khẩu\n- Thông tin đăng nhập người dùng lấy thông tin đăng nhập tại email đã đăng ký tài khoản, Nhập thông tin tại gmail để đăng nhập. Khi đăng nhập thành công hệ thống sẽ hiển thị thông báo sau:\n\n![]({{IMG_152}})\n\n*     Thông báo đăng nhập thành công*\n\n## 3 Quên mật khẩu.\n\n- Chức năng giúp người dùng có thể lấy lại mật khẩu khi vô tình quên mật khẩu của tài khoản, để thực hiện quên mật khẩu người dùng làm theo những bước sau:\n- __Bước 1: __Tại giao diện đăng nhập chọn quên mật khẩu.\n\n![]({{IMG_153}})\n\n- __Bước 2: __Người dùng nhập vào thông tin của tài khoản bao gồm\n- __Số điện thoại __\n- __Email__\n\n## Bước 3:  Sau khi người dùng nhập đầy đủ thông tin, người dùng thực hiện gửi thông tin, mật khẩu mới sẽ được gửi vào email. Người dùng truy cập vào hộp thư gmail để lấy thông tin.\n\n## Thay đổi mật khẩu.\n\n- Chức năng giúp người dùng có thể thay đổi mật khẩu theo ý mình muốn, thay đổi khi thông tin bị lộ. Các bước thực hiện đổi mật khẩu như sau :\n\n![]({{IMG_154}})\n\n- __Bước 1: __Người dùng nhập vào các thông tin hiển thị trên màn hình.\n- __Mật khẩu cũ__\n- __Mật khẩu mới__\n- __Nhập lại mật khẩu__\n- __Bước 2: __Sau khi nhập đầy đủ thông tin yêu cầu người dùng thực hiện đổi mật khẩu. Sau khi đổi mật khẩu hệ thống sẽ tự logout tài khoản ra khỏi hệ thống. Người dùng đăng nhập lại bằng tài khoản mới.\n\n![]({{IMG_155}})\n\n- __Lưu ý: __Người dùng cần nhập mật khẩu mới và nhập lại mật khẩu mới giống nhau. khuyến nghị người dùng nên dùng mật khẩu mạnh có ký tự để tăng độ bảo mật cho tài khoản.\n\n# Gửi phản ánh\n\n## Gửi phản ánh ẩn danh\n\n__        Gửi phản ánh ẩn danh cấp trung ương__\n\n- Chức năng giúp người dùng có thể gửi phản ánh một cách nhanh chóng mà không cần đến bước đăng ký tài khoản.\n- Để thực hiện việc gửi ẩn danh cấp trung ương thì người dùng cần làm theo những bước sau đây:\n- __Bước 1: __Người dùng truy cập đường dẫn đến với website, tại trang chủ, người dùng chọn gửi phản ánh trên thanh menu của hệ thống.\n- __Bước 2: __Hệ thống sẽ hiển thị lên giao diện gửi phản ánh ẩn danh, người dùng tiến hành nhập vào thông tin cá nhân bao gồm các thông tin sau:\n- __Họ và tên__\n- __Số điện thoại__\n- __Email__\n- __Bước 3: __Sau khi người dùng nhập vào đầy đủ thông tin cá nhân thì bắt đầu thực hiện việc nhập đơn phản ánh bao gồm các thông tin sau.\n- __Cấp xử lý: __Người dùng chọn cấp xử lý là trung ương.\n- __Văn bản :  __Đối với văn bản thì người dùng chỉ cần nhập vào tên văn bản đề tìm kiếm, sau đó kết quả sẽ được hiển thị, người dùng chọn văn bản tương ứng, hệ thống sẽ tự động trả về thông tin của văn bản đó.\n\n![]({{IMG_156}})\n\n- __Mục lục: __Sau khi người dùng chọn được văn bản cần phản ánh hệ thống sẽ trả về thông tin các mục lục của văn bản, người dùng chọn điều khoản cần phản ánh, kiến nghị. ![]({{IMG_157}})\n- __Nội dung: __Người dùng nhập vào nội dung cần phản ánh cho văn bản mình chọn phía trên, đối với nội dung thì sẽ bị giới hạn ký tự là 1000 chữ.\n- __Cơ quan tiếp: __Người dùng chọn cơ quan tiếp nhận đơn phản ánh, kiến nghị của mình, khi chọn văn bản hệ thống đã thực hiện chọn cơ quan tiếp nhận đúng với văn bản đang được chọn. Người dùng có thể chọn cơ quan tiếp nhận khác nếu muốn\n- __Đối tượng phản ánh: __Người dùng chọn đối tượng phản ánh mà mình đang đại diện, nếu là cá nhân thì sẽ lấy thông tin họ tên đã nhập phía trên, nếu là doanh nghiệp/cơ quan/tổ chức thì sẽ nhập vào tên của đối tượng. Hệ thống sẽ ghi nhận đơn phản ánh của đối tượng đó.\n\n__ \t   \t![]({{IMG_158}})__\n\n- __Bước 3: __Sau khi nhập đầy đủ thông tin phản ánh. Người dùng thực hiện gửi phản ánh bằng cách chọn button ![]({{IMG_159}}) để thực hiện gửi phản ánh tới cơ quan trung ương được chọn.\n- __Bước 4: __Sau khi gửi phản ánh. Người dùng sẽ được trả về một email với nội dung là mã phản ánh đã gửi đi để thuận tiện cho việc tra cứu kết quả sau này.\n\n![]({{IMG_160}})\n\n- Người dùng có thể thực hiện đăng ký tài khoản nhanh bằng cách chọn đồng ý trên thông báo, hệ thống sẽ ghi nhận thông tin người dùng đã nhập phía trên làm thông tin tài khoản\n- __Lưu ý: __Nếu người dùng nhập sai thông tin cá nhân, địa chỉ email hệ thống sẽ không thể thực hiện việc gửi mã phản ánh để tra cứu. Đối với cấp xử lý là trung ương thì người dùng không thể chọn các văn bản UBND.\n\n__         Gửi phản ánh ẩn danh cấp địa phương__\n\n- Chức năng giúp người dùng có thể gửi phản ánh một cách nhanh chóng mà không cần đến bước đăng ký tài khoản.\n- Để thực hiện việc gửi ẩn danh cấp trung ương thì người dùng cần làm theo những bước sau đây:\n- __Bước 1: __Người dùng truy cập đường dẫn đến với website, tại trang chủ, người dùng chọn gửi phản ánh trên thanh menu của hệ thống.\n- __Bước 2: __Hệ thống sẽ hiển thị lên giao diện gửi phản ánh ẩn danh, người dùng tiến hành nhập vào thông tin cá nhân bao gồm các thông tin sau:\n- __Họ và tên__\n- __Số điện thoại__\n- __Email__\n- __Bước 3: __Sau khi người dùng nhập vào đầy đủ thông tin cá nhân thì bắt đầu thực hiện việc nhập đơn phản ánh bao gồm các thông tin sau.\n- __Cấp xử lý: __Người dùng chọn cấp xử lý là địa phương. Đây chính là cơ quan sẽ tiếp nhận đơn phản ánh của bạn.\n- __Địa phương: __Người dùng chọn địa phương muốn kiến nghị là ban ngành đứng đầu tỉnh.\n- __Văn bản: __Đối với văn bản thì người dùng chỉ cần nhập vào tên văn bản đề tìm kiếm, sau đó kết quả sẽ được hiển thị, người dùng chọn văn bản tương ứng, hệ thống sẽ tự động trả về thông tin của văn bản đó.\n- __Mục lục: __Sau khi người dùng chọn được văn bản cần phản ánh hệ thống sẽ trả về thông tin các mục lục của văn bản, người dùng chọn điều khoản cần phản ánh, kiến nghị. ![]({{IMG_161}})\n- __Nội dung: __Người dùng nhập vào nội dung cần phản ánh cho văn bản mình chọn phía trên, đối với nội dung thì sẽ bị giới hạn ký tự là 1000 chữ.\n- __Đối tượng phản ánh: __Người dùng chọn đối tượng phản ánh mà mình đang đại diện, nếu là cá nhân thì sẽ lấy thông tin họ tên đã nhập phía trên, nếu là doanh nghiệp/cơ quan/tổ chức thì sẽ nhập vào tên của đối tượng. Hệ thống sẽ ghi nhận đơn phản ánh của đối tượng đó.\n\n__ \t   \t![]({{IMG_162}})__\n\n- __Bước 3: __Sau khi nhập đầy đủ thông tin phản ánh. Người dùng thực hiện gửi phản ánh bằng cách chọn button ![]({{IMG_163}}) để thực hiện gửi phản ánh tới cơ quan trung ương được chọn.\n- __Bước 4: __Sau khi gửi phản ánh. Người dùng sẽ được trả về một email với nội dung là mã phản ánh đã gửi đi để thuận tiện cho việc tra cứu kết quả sau này.\n\n![]({{IMG_164}})\n\n- Người dùng có thể thực hiện đăng ký tài khoản nhanh bằng cách chọn đồng ý trên thông báo, hệ thống sẽ ghi nhận thông tin người dùng đã nhập phía trên làm thông tin tài khoản\n- __Lưu ý: __Nếu người dùng nhập sai thông tin cá nhân, địa chỉ email hệ thống sẽ không thể thực hiện việc gửi mã phản ánh để tra cứu.\n\n## Gửi phản ánh khi đã đăng nhập\n\n__     Gửi phản ánh cấp trung ương__\n\n- Chức năng giúp người dùng có thể gửi phản ánh khi đã đăng nhập, có thể quan lý các đơn phản ánh mà mình đã gửi đi, quản lý được các tiến trình xử lý.\n- Để thực hiện việc gửi phản ánh cấp trung ương thì người dùng cần làm theo những bước sau đây:\n- __Bước 1: __Người dùng truy cập đường dẫn đến với website, tại trang chủ, người dùng đăng nhập vào tài khoản đã đăng ký với hệ thống. Sau khi đăng nhập thành công. Người dùng chọn gửi phản ánh trên thanh menu của hệ thống.\n- __Bước 2: __Hệ thống sẽ hiển thị lên giao diện gửi phản ánh, giao diện phản ánh sẽ hiển thị lên như sau:\n\n__![]({{IMG_165}})__\n\n- __Bước 3: __Người dùng chọn cấp xử lý là trung ương\n- __Bước 3: __Sau khi người dùng nhập vào đầy đủ thông tin cá nhân thì bắt đầu thực hiện việc nhập đơn phản ánh bao gồm các thông tin sau.\n- __Cấp xử lý __\n- __Văn bản ( __Đối với văn bản thì người dùng chỉ cần nhập vào tên văn bản đề tìm kiếm, sau đó kết quả sẽ được hiển thị, người dùng chọn văn bản tương ứng, hệ thống sẽ tự động trả về thông tin của văn bản đó)\n\n![]({{IMG_166}})\n\n- __Mục lục: __Sau khi người dùng chọn được văn bản cần phản ánh hệ thống sẽ trả về thông tin các mục lục của văn bản, người dùng chọn điều khoản cần phản ánh, kiến nghị.\n\n![]({{IMG_167}})\n\n- __Nội dung: __Người dùng nhập vào nội dung cần phản ánh cho văn bản mình chọn phía trên, đối với nội dung thì sẽ bị giới hạn ký tự là 1000 chữ.\n- __Cơ quan tiếp nhận: __Người dùng chọn cơ quan tiếp nhận đơn phản ánh, kiến nghị của mình, khi chọn văn bản hệ thống đã thực hiện chọn cơ quan tiếp nhận đúng với văn bản đang được chọn. Người dùng có thể chọn cơ quan tiếp nhận khác nếu muốn\n- __Đối tượng phản ánh: __Người dùng chọn đối tượng phản ánh mà mình đang đại diện, nếu là cá nhân thì sẽ lấy thông tin họ tên đã nhập phía trên, nếu là doanh nghiệp/cơ quan/tổ chức thì sẽ nhập vào tên của đối tượng. Hệ thống sẽ ghi nhận đơn phản ánh của đối tượng đó.\n\n__ \t   ![]({{IMG_168}})__\n\n- __Bước 3: __Sau khi nhập đầy đủ thông tin phản ánh. Người dùng thực hiện gửi phản ánh bằng cách chọn button ![]({{IMG_169}}) để thực hiện gửi phản ánh tới cơ quan trung ương được chọn.\n- __Bước 4: __Sau khi gửi phản ánh. Người dùng sẽ được trả về một email với nội dung là mã phản ánh đã gửi đi để thuận tiện cho việc tra cứu kết quả sau này.\n\n![]({{IMG_170}})\n\n- Người dùng có thể thực hiện tra cứu các phản ánh đã gửi của mình tại mục phản ánh của tôi.\n- __Lưu ý: __Nếu người dùng chọn cấp xử lý trung ương thì sẽ không thể chọn được văn bản cấp UBND.\n\n__Gửi phản ánh cấp địa phương__\n\n- Chức năng giúp người dùng có thể gửi phản ánh khi đã đăng nhập, có thể quan lý các đơn phản ánh mà mình đã gửi đi, quản lý được các tiến trình xử lý.\n- Để thực hiện việc gửi phản ánh cấp địa phương thì người dùng cần làm theo những bước sau đây:\n- __Bước 1: __Người dùng truy cập đường dẫn đến với website, tại trang chủ, người dùng đăng nhập vào tài khoản đã đăng ký với hệ thống. Sau khi đăng nhập thành công. Người dùng chọn gửi phản ánh trên thanh menu của hệ thống.\n- __Bước 2: __Hệ thống sẽ hiển thị lên giao diện gửi phản ánh, giao diện phản ánh sẽ hiển thị lên như sau:\n\n__![]({{IMG_171}})__\n\n- __Bước 3: __Sau khi người dùng nhập vào đầy đủ thông tin cá nhân thì bắt đầu thực hiện việc nhập đơn phản ánh bao gồm các thông tin sau.\n- __Cấp xử lý: __Người dùng chọn cấp xử lý là địa phương.\n- __Địa phương: __Người dùng chọn địa phương muốn phản ánh, đơn phản ánh của người dùng sẽ được chuyển về địa phương được chọn.\n- __Văn bản: __Đối với văn bản thì người dùng chỉ cần nhập vào tên văn bản đề tìm kiếm, sau đó kết quả sẽ được hiển thị, người dùng chọn văn bản tương ứng, hệ thống sẽ tự động trả về thông tin của văn bản đó.\n\n![]({{IMG_172}})\n\n- __Mục lục: __Sau khi người dùng chọn được văn bản cần phản ánh hệ thống sẽ trả về thông tin các mục lục của văn bản, người dùng chọn điều khoản cần phản ánh, kiến nghị.\n\n![]({{IMG_173}})\n\n- __Nội dung: __Người dùng nhập vào nội dung cần phản ánh cho văn bản mình chọn phía trên, đối với nội dung thì sẽ bị giới hạn ký tự là 1000 chữ.\n- __Đối tượng phản ánh: __Người dùng chọn đối tượng phản ánh mà mình đang đại diện, nếu là cá nhân thì sẽ lấy thông tin họ tên đã nhập phía trên, nếu là doanh nghiệp/cơ quan/tổ chức thì sẽ nhập vào tên của đối tượng. Hệ thống sẽ ghi nhận đơn phản ánh của đối tượng đó.\n\n\t   ![]({{IMG_174}})\n\n- __Bước 3: __Sau khi nhập đầy đủ thông tin phản ánh. Người dùng thực hiện gửi phản ánh bằng cách chọn button ![]({{IMG_175}}) để thực hiện gửi phản ánh tới cơ quan trung ương được chọn.\n- __Bước 4: __Sau khi gửi phản ánh. Người dùng sẽ được trả về một email với nội dung là mã phản ánh đã gửi đi để thuận tiện cho việc tra cứu kết quả sau này.\n\n![]({{IMG_176}})\n\n- Người dùng có thể thực hiện tra cứu các phản ánh đã gửi của mình tại mục phản ánh của tôi.\n- __Lưu ý: __Nếu người dùng chọn cấp xử lý địa phương thì sẽ không thể chọn được văn bản cấp trung ương.\n\n__Phản ánh đề xuất__\n\n- Chức năng giúp người dùng có thể nắm bắt được các phản ánh đã được phản ánh và được cơ quan chức năng có thẩm quyền xử lý, người dùng có thể thực hiện xem tham khảo trước khi gửi phản ánh.\n- Các bước để xem phản ánh đề xuất.\n- __Bước 1: __Tại giao diện gửi phản ánh. Người dùng nhập vào tên văn bản muốn gửi phản ánh, hệ thống sẽ hiển thị ra phản ánh đề xuất như sau:\n- ![]({{IMG_177}})\n- __Bước 2: __Người dùng click vào dòng chữ được hiển thị trên màn hình như trên, hệ thống sẽ trả về danh sách như sau.\n\n__![]({{IMG_178}})__\n\n- __Bước 3: __Người dùng click vào đơn phản ánh để xem chi tiết.\n- __Lưu ý: __Người dùng cần tham khảo trước các đơn phản ánh đề xuất phản ánh trước khi gửi phản ánh mới. Tránh việc gửi quá nhiều phản ánh trùng lập cùng một vấn đề đã được xử lý.\n\n# Phản ánh của tôi\n\n- Chức năng giúp người dùng có thể tìm thấy các phản ánh mình đã gửi một cách nhanh chóng, tại đây có thể xem chi tiết đơn phản ánh, tình trạng và tiến trình xử lý của đơn phản ánh.\n\n## Tìm kiếm phản ánh bằng bộ lọc.\n\n- Chức năng giúp người dùng có thể lọc các phản ánh theo các bộ lọc đang có như:\n- __Cấp xử lý__\n- __Cơ quan tiếp nhận: __Nếu người dùng chọn cấp xử lý thì cơ quan tiếp nhận sẽ được hiển thị theo cấp xử lý.\n- Cách dùng bộ lọc để lọc phản ánh theo ý muốn như sau.\n- __Bước 1: __Tìm kiếm theo cấp xử lý. Người dùng chọn cấp xử lý sau đó hệ thống sẽ hiển thị các phản ánh đã gửi liên quan đến cấp xử lý đã chọn :\n\n__       \t![]({{IMG_179}})__\n\n- __Bước 2: __Tìm kiếm theo cơ quan tiếp nhận. Người dùng chọn cơ quan tiếp nhận để hiển thị danh sách quản ánh liên quan đến cơ quan tiếp nhận hoặc có thể chọn cấp xử lý rồi chọn cơ quan tiếp nhận để có thể tìm kiếm chi tiết hơn :\n\n![]({{IMG_180}})\n\n## Danh sách phản ánh của tôi\n\n- Danh sách phản ánh của tôi sẽ hiển thị các phản ánh người dùng đã gửi, người dùng có thể xem lại các phản ánh của mình tại danh sách phản ánh này. Danh sách sẽ hiển thị các thông tin sau:\n- __Tên văn bản kiến nghị.__\n- __Thời gian gửi__\n- __Trạng thái phản ánh__\n- __Nội dung phản ánh__\n\t- __![]({{IMG_181}})__\n- Kết hợp với bộ lọc đã đề cập tại mục 3.1 người dùng có thể tìm kiếm đơn phản ánh một các nhanh chóng.\n\n## Thông tin chi tiết phản ánh\n\n- Chức năng cho phép người dùng xem chi tiết các phản ánh đã gửi. Tại đây người dùng có thể xem được các nội dung như:\n\nĐường dẫn:Phản ánh của tôi &gt; [Danh sách phản ánh](https://pacs-tn.demozone.vn/danh-sach-phan-anh) &gt; chi tiết phản ánh\n\n- __Tiến trình__\n- __Kết quả xử lý__\n\n__\t    ![]({{IMG_182}})__\n\n- Người dùng xem chi tiết phản ánh, nắm bắt được trạng thái của đơn phản ánh, nắm bắt được thông tin cơ quan đang xử lý đơn phản ánh, kết quả xử lý. Người dùng có thể chọn file để xem chi tiết công văn xử lý đơn phản ánh ( Nếu có)\n\n## Đánh giá trả lời phản ánh\n\n- Chức năng giúp người dùng đánh giá chất lượng câu trả lời cho phản ánh của mình một cách khách quan nhất.\n- Nội dung đánh giá bao gồm 5 tiêu chí:\n- __Rất không hài lòng__\n- __Không hài lòng__\n- __Bình thường__\n- __Hài lòng__\n- __Rất hài lòng__\n- Mỗi ngôi sao sẽ tương ứng với các tiêu chí được quy định từ 1 đến 5 ngôi sao.\n\n__                     ![]({{IMG_183}})__\n\n- __Lưu ý: __Mỗi đơn phản ánh chỉ có thể đánh giá khi trạng thái là đã xử lý. Người dùng chỉ có thể đánh giá đơn phản ánh tại màn hình danh sách phản ánh của tôi.Đơn phản ánh chỉ được đánh giá 1 lần, hãy đưa ra đánh giá khách quan và đúng với chất lượng với câu trả lời cho phản ánh của bạn.\n\n# Danh sách phản ánh\n\n- Chức năng được xây dựng giúp người dùng có thể xem các phản ánh của người dùng khác đã phản ánh trước đó. Người dùng có thể xem để tham khảo các vấn đề trước đó có giống với vấn đề mình sắp phản ánh hay là mình đáng cần xem hay không.\n- Người dùng truy cập danh sách phản ánh từ menu trên màn hình trang chủ tại mục Danh sách phản ánh.\n\n## Tìm kiếm phản ánh\n\n- Chức năng giúp người dùng tìm đơn phản ánh một cách nhanh chóng, tiện lợi với bộ lọc và công cụ tìm kiếm. Người dùng có thể tìm theo 2 loại sau:\n- __Loại 1:__\n- Chức năng giúp người dùng có thể lọc các phản ánh theo các bộ lọc đang có như:\n- __Cấp xử lý__\n- __Cơ quan tiếp nhận: __Nếu người dùng chọn cấp xử lý thì cơ quan tiếp nhận sẽ được hiển thị theo cấp xử lý.\n\nCách dùng bộ lọc để lọc phản ánh theo ý muốn như sau.\n\n- __Bước 1: __Tìm kiếm theo cấp xử lý. Người dùng chọn cấp xử lý sau đó hệ thống sẽ hiển thị các phản ánh đã gửi liên quan đến cấp xử lý đã chọn :\n- Tìm kiếm theo cơ quan tiếp nhận. Người dùng chọn cơ quan tiếp nhận để hiển thị danh sách quản ánh liên quan đến cơ quan tiếp nhận hoặc có thể chọn cấp xử lý rồi chọn cơ quan tiếp nhận để có thể tìm kiếm chi tiết hơn :\n- __Loại 2: __Tại thanh menu chức năng người dùng có thể nhập mã phản ánh hoặc tên văn bản để tìm kiếm chính xác đến phản ánh/văn bản muốn tìm kiếm.\n- ![]({{IMG_184}})\n- Kết quả tìm kiếm sẽ trả về:\n\n__![]({{IMG_185}})__\n\n## Danh sách phản ánh\n\n- Danh sách phản ánh giúp người dùng có thể xem các phản ánh đã được xử llý của những người dùng khác để tham khảo trước khi tạo phản ánh.\n- Người dùng có thể tìm kiếm các phản ánh bằng bộ lọc hoặc công cụ tìm kiếm được đưa ra tại mục 4.1.\n- Màn hình danh sách phản ánh sẽ hiển thị các phản ánh với những thông tin sau:\n- __Tên văn bản__\n- __Ngày gửi__\n- __Trạng thái __\n- __Nội dung.__\n\n__![]({{IMG_186}})__\n\n## Chi tiết phản ánh\n\n- Người dùng truy cập chi tiết phản ánh tại màn hình danh sách phản ánh đã được nêu tại mục 4.2. Các bước xem chi tiết phản ánh.\n- __Bước 1: __Tại giao diện danh sách phản ánh, người dùng chọn phản ánh muốn xem, hệ thống sẽ hiển thị cho tiết phản ánh sau:\n\nĐường dẫn: [Danh sách phản ánh](https://pacs-tn.demozone.vn/danh-sach-phan-anh) &gt; chi tiết phản ánh.\n\n__![]({{IMG_187}})__\n\n- __Lưu ý: __Tại màn hình chi tiết phản ánh này người dùng chỉ có thể xem nội dung chi tiết, không thể đánh giá phản ánh. Để đánh giá phản ánh vui lòng xem chi tiết tại mục 3.4\n\n# Trang chủ\n\n- Khi người dùng truy cập tới website bằng đường dẫn [https://paknvbqppl.moj.gov.vn](https://paknvbqppl.moj.gov.vn) . Hệ thống sẽ đưa người dùng tới màn hình trang chủ. Tại đây sẽ hiển thị các nội dung sau.\n- __Menu chức năng : __Các chức năng người dùng ẩn danh có thể thao tác trên hệ thống.\n\n__![]({{IMG_188}})__\n\n- __Văn bản mới: __Các văn bản được cập nhật tại trang văn bản mới: Các văn bản được câp nhật tại trang Cơ sở dữ liệu quốc gia về văn bản pháp luật.\n- __Phản ánh mới nhất: __Các phản ánh của người dân mới được xử lý sẽ hiển thị tại mục này, click vào để xem chi tiết.\n- __Đường dẫn để tải app phản ánh trên App Store và CH Play.__\n- __Biểu đồ: __Biểu đồ thể hiện tình hình tiếp nhận phản ánh theo năm, Biểu đồ thể hiện mức độ hài lòng của người phản ánh theo năm.\n- __Tìm kiếm: __Người dùng có thể thực hiện tìm kiếm danh tại ô tìm kiếm trên banner của trang chủ. Có thể tìm kiếm theo mã phản ánh và tên văn bản.\n\n__![]({{IMG_189}})__\n\n# Giới thiệu\n\n- Màn hình giới thiệu giúp người dùng nắm bắt và có cái nhìn sơ quát về hệ thống phản ánh và kiến nghị văn bản QPPL. Bao gồm các chức năng chính của hệ thống và nội dung triển khai, phát triển của hệ thống.\n\n__![]({{IMG_190}})__\n\n# Hướng dẫn\n\n- Màn hình hướng dẫn đưa ra các quy trình hướng dẫn người dùng các bước thao tác để gửi phản ánh, danh sách phản ánh, phản ánh của tôi. Giúp người dùng có thể nắm bắt cách sử dụng hệ thống một cách nhanh chóng, nhằm mục đích nâng cao trải nghiệm và độ chính xác trong từng đơn phản ánh với nội dung hướng dẫn bằng video chi tiết.\n\n__   ![]({{IMG_191}})__\n\n# C. HỆ THỐNG XỬ LÝ PHẢN ÁNH, KIẾN NGHỊ VĂN BẢN QPPL\n\n- Hệ thống thực hiện việc xử lý phản ánh kiến nghị của người dân, tổ chức, cơ quan. Hệ thống phục vụ cho các đối tượng có vai trò sau:\n- Lãnh đạo: Thực hiện đăng nhập để xem phần thống kê, báo cáo.\n- Cơ quan điều phối: Thực hiện đăng nhập điều phối các phản ánh không có cơ quan xử lý tới các cơ quan, ban ngành, địa phương trong phạm vi xử lý.\n- Cơ quan, ban ngành, địa phương: Thực hiện việc đăng nhập vào hệ thống để xử lý, trả lời các đơn phản ánh, kiến nghị từ người dân, tổ chức, địa phương đã được tiếp nhận.\n\n# Đăng nhập\n\n- __Truy cập vào đường link: __[https://paknvbqppl-xl.moj.gov.vn](https://paknvbqppl-xl.moj.gov.vn)\n- Tại màn hình đăng nhập: Nhập tài khoản và mật khẩu (tài khoản công vụ của đơn vị được phân công nhiệm vụ xử lý phản ánh kiến nghị của người dân, tổ chức, và các cơ quan ban __![]({{IMG_192}})__\n\n*Hình ảnh: Đăng nhập*\n\n- Người dùng nhập vào thông tin đăng nhập tại form, sau đó chọn biểu tượng đăng nhập ![]({{IMG_193}})để đăng nhập vào hệ thống.\n- Người dùng chọn chức năng ghi nhớ mật khẩu để thuận tiện cho lần đăng nhập tiếp theo.\n\n## Chức năng danh sách phản ánh\n\n- __Giao diện bao gồm:__\n- Bộ lọc thuộc tính gồm các thuộc tính sau:\n- __ Họ tên,__\n- __ tiêu đề nội dung phản ánh, __\n- __Tìm kiếm theo loại văn bản, __\n- __theo trạng thái, __\n- __thời gian phản ánh.__\n- Danh sách các phản ánh bao gồm các trường thông tin:\n- __Họ tên; __\n- __Đối tượng phản ánh/ văn bản__\n- __Mã phản ánh/Nội dung phản ánh.__\n- __Ngày phản ánh/hạn trả lời__\n- __Cơ quan xử lý/hạn cơ quan xử lý__\n- __Đơn vị chuyên môn/hạn đơn vị chuyên môn__\n- __Trạng thái__\n- __Chức năng__: Xử lý phản ánh, xem lịch sử xử lý, Xem chi tiết trên trang phản ánh, hiển thị nội bộ.\n\n__![]({{IMG_194}})__\n\n*Hình ảnh: Danh sách phản ánh*\n\n- Mục ghi chú  màu của các trạng thái xử lý.*                     ![]({{IMG_195}})*\n\n*Hình ảnh: Trạng thái xử lý*\n\n- Màn hình danh sách này hiển thị với các chức vụ xử lý, đối với chức vụ lãnh đạo thì không hiển thị.\n\n# Chức năng xem lịch xử phản ánh\n\n- Click vào nút chức năng__ Xem lịch sử phản ánh ![]({{IMG_196}})__   =&gt; màn hình hiện ra giao diện  lịch sử phản ánh. Bao gồm các thông tin:\n- __Thông tin chi tiết của người dân và văn bản, nội dung người dân góp ý.__\n- __Thông tin trả lời phản ánh__\n- __Nhật ký xử lý__\n\n__![]({{IMG_197}})__\n\n*\t\t\t\t\t\tHình ảnh: Lịch sử xử lý*\n\n# Xử lý phản ánh\n\n- __Bước 1: __Click vào nút chức năng__ Xử lý phản ánh ![]({{IMG_198}}) =&gt; __màn hình, hiển thị giao diện xử lý phản ánh:\n\n![]({{IMG_199}})\n\n*\t\t\t\t\t\tMàn hình xử lý phản ánh*\n\n## Chuyển cơ quan ngang cấp.\n\n- Mục đích:\n- Đối với các đơn phản ánh được chuyển tới cho cơ quan xử lý, cán bộ xử lý phản ánh của cơ quan đó thực hiện xem nội dung đơn phản ánh và kiểm tra xem đơn có đúng nghiệp vụ hay không. Nếu không thì thực hiện chuyển sang cho cơ quan ngang cấp.\n- Các bước thực hiện:\n- __Bước 1: __Sau khi truy cập màn hình xử lý phản ánh. Người dùng thực hiện click vào chức năng Chuyển cơ quan xử lý ngang cấp ![]({{IMG_200}})Hệ thống hiển thị lên giao diện PU xử lý sau:\n\n![]({{IMG_201}})\n\n*\t\t\tPU giao diện chuyển cơ quan xử lý ngang cấp*\n\n- __Bước 2: __Sau khi hệ thống hiển thị __Popup __chuyển cơ quan ngang cấp, người dùng chọn cơ quan xử lý. Thực hiện nhập đầy đủ thông tin ghi chú chuyển cơ quan.\n- __Bước 3:  __Chọn chức năng thực hiện chuyển __![]({{IMG_202}})__ để chuyển đơn phản ánh sang cho cơ quan đã được chọn.\n- __Bước 4: __Người dùng thực hiện chọn chức năng __đóng ![]({{IMG_203}}) __để đóng giao diện __Popup.__\n- __Lưu ý: __Người dùng chỉ có thể thực hiện chuyển xử lý cho các cơ quan ngang cấp. Không thể chuyển vượt cấp hoặc xuống cấp đối với chức năng này.\n\n## Chuyển cơ quan xử lý cấp dưới.\n\n- Mục đích:\n- Chức năng dùng để chuyển các đơn phản ánh xuống các phòng ban cấp dưới của của các bộ, ban ngành địa phương, đơn phản ánh sẽ được trả lời một cách đúng chuyên môn và đầy đủ nội dung hơn.\n- Các bước thực hiện:\n- __Bước 1: __Tại giao diện xử lý phản ánh, người dùng thực hiện chọn chức năng chuyển cơ quan cấp dưới ![]({{IMG_204}}), sau đó hệ thống sẽ hiển thị giao diện chuyển cơ quan cấp dưới như sau:\n\n![]({{IMG_205}})\n\n- __Bước 2: __Người dùng nhập chọn cơ quan xử lý cấp dưới, chỉ được phép chọn 1 cấp dưới. Sau khi chọn cấp dưới, nhập vào thông tin ghi chú lý do chuyển và yêu cầu xử lý.\n- __Bước 3: __Chọn chức năng __Thực hiện chuyển ![]({{IMG_206}})__ để chuyển đơn phản ánh xuống cấp dưới.\n- __Bước 4: __Chọn chức năng __Đóng__ ![]({{IMG_207}}) để thực hiện đóng giao diện chuyển cơ quan xử lý cấp dưới.\n- __Lưu ý: __Chức năng này chỉ có thể thực hiện chuyển tại giao diện cơ quan bộ ban ngành, địa phương. Đối với cơ quan cấp dưới chức năng sẽ không được sử dụng.\n\n## Trả lại cơ quan đã xử lý.\n\n- Mục đích:\n- Chức năng dùng để trả lại đơn phản ánh cho cơ quan xử lý trước đấy với các trường hợp như không đúng chuyên môn nghiệp vụ của ban ngành, địa phương nhận đơn phản ánh này.\n- Các bước thực hiện:\n- __Bước 1: __Tại giao diện xử lý phản ánh, người dùng chọn chức năng __Trả lại cơ quan đã xử lý __![]({{IMG_208}}), sau đó hệ thống hiển thị màn hình thông tin như sau:\n\n![]({{IMG_209}})\n\n- __Bước 2: __Người dùng thực hiện chọn cơ quan đã từng xử lý, sau đó nhập ghi chú nội dung trả lại đơn phản ánh.\n- __Bước 3: __Sau khi nhập đầy đủ đủ thông tin, người dùng chọn chức năng Thực__ hiện chuyển__ ![]({{IMG_210}}) để trả lại đơn phản ánh cho cơ quan xử lý trước đó mà bạn đã chọn.\n- __Bước 4: __Người dùng thực hiện chọn chức năng __Đóng ![]({{IMG_211}}) __để đóng lại giao diện __popup __đang xử lý.\n- __Lưu ý: __Chức năng này chỉ sử dụng được khi đơn phản  ánh được nhận từ một bộ ban ngành, địa phương khác.\n\n## Đặt hẹn chờ đơn vị chuyên môn trả lời.\n\n- Mục đích:\n- Chức năng dùng để đặt lịch hẹn xử lý với các đơn vị chuyên môn cấp dưới, các đơn vị phụ ngoài hệ thống cơ quan nhà nước, các công ty kỹ thuật liên quan.\n- Các bước thực hiện:\n- __Bước 1: __Người dùng chọn chức năng __Đặt hẹn chờ đơn vị chuyên môn trả lời ![]({{IMG_212}}), __hệ thống thực hiện mở giao diện sau:\n\n![]({{IMG_213}})\n\n__*\t\t\t\tPU *__*đặt hẹn chờ đơn vị chuyên môn trả lời*\n\n- __Bước 2: __Người dùng thực hiện chọn đơn vị chuyên môn, sau đó nhập nội dung ghi chú, chọn lịch hẹn xử lý theo thông tin đã trao đổi với đơn vị chuyên môn. Đối với trường hợp đơn vị chuyên môn chưa có trong danh sách, thực hiện thêm mới bằng cách click vào chức năng  ![]({{IMG_214}}). Hệ thống hiển thị lên form thêm mới đơn vị chuyên mộ như sau:\n\n![]({{IMG_215}})\n\n- __Bước 3: __Người dùng nhập tên đơn vị chuyên môn, sau đó chọn chức năng\n- __-__\n- __Tạo đơn vị ![]({{IMG_216}}) __để lưu thông tin đơn vị chuyên môn đã nhập. Chọn chức năng __Đóng thêm mới![]({{IMG_217}})__ để đóng giao diện thêm mới.\n- __Bước 4: __Sau khi thêm đơn vị chuyên môn thành công. người dùng rà soát lại thông tin và chọn chức năng __Thực hiện chuyển __![]({{IMG_218}}) để chuyển đơn phản ánh sang trạng thái hẹn đơn vị chuyên môn xử lý.\n- __Bước 5: __Khi người dùng không còn nhu cầu chuyển đơn phản ánh hoặc hủy quá trình gửi đơn phản ánh. người dùng thực hiện chọn chức năng __Đóng ![]({{IMG_219}}).__\n-  __Lưu ý. __Thời gian hẹn xử lý không được lớn hơn hạn xử lý còn lại của đơn phản ánh.\n\n## Chức năng đồng xử lý, thêm cơ quan phối hợp xử lý.\n\n- Mục đích:\n- Chức năng giúp người dùng xử lý một đơn phản ánh với nhiều bộ, ban ngành, địa phương khác nhau trong trường hợp cần câu trả lời từ nhiều nguồn.\n- Các bước thực hiện:\n- __Bước 1: __Tại giao diện phản ánh xử lý phản ánh, người dùng chọn chức năng __Thêm cơ quan phối hợp xử lý ![]({{IMG_220}})__ Sau chọn chức năng hệ thống sẽ hiển thị lên màn hình __Popup __thông tin như sau:\n\n![]({{IMG_221}})\n\n__*\t\t\t\t\tPU *__*thêm cơ quan phối hợp xử lý    *\n\n- __Bước 2: __Người dùng nhập vào nội dung cần phối hợp, chọn file, tệp đính kèm thông tin phối hợp nếu có sau khi chọn xong file, chọn chức năng ![]({{IMG_222}}) để thực hiện tải lên. Cơ quan xử lý chính thực hiện chọn các cơ quan xử lý cần phối hợp bằng các nhập tên, thực hiện nhập tên cơ quan cần phối hợp hoặc có thể cuộn chuột để tìm, tích vào tên cơ quan cần phối hợp, có thể chọn được nhiều cơ quan. Sau đấy đặt hạn xử lý cho các cơ quan này.\n- __Bước 3: __Sau khi nhập đầy đủ thông cần phối hợp, người dùng thực hiện chọn chức năng __Chuyển cơ quan phối hợp xử lý ![]({{IMG_223}})__ Sau khi chọn chức năng, đơn phản ánh sẽ chuyển tới cho cơ quan cần xử lý.\n- __Bước 4: __Để thoát khỏi quá trình thêm cơ quan phối hợp này, người dùng thực hiện chọn chức năng __Đóng ![]({{IMG_224}})__để đóng màn hình và hủy quá trình thêm đơn vị phối hợp xử lý.\n- __Lưu ý: __Khi thực hiện chuyển cơ quan điều phối, thời gian hẹn xử lý phải ít hơn 15 ngày.\n\n## Chức năng trả lời phản ánh\n\n- Các bước thực hiện:\n- __Bước 1: __Click vào nút chức năng__ Xử lý phản ánh ![]({{IMG_225}})  __hệ thống hiển thị giao diện xử lý phản ánh như sau:\n\n__![]({{IMG_226}})__\n\n*Hình ảnh: Chức năng xử lý*\n\n- __Bước 2: __Kiểm tra nếu đơn phản ánh có thực hiện đồng xử lý với các cơ quan khác, người dùng thực hiện lấy thông tin các cơ quan khác đã gửi để thêm vào câu trả lời. Có thể thực hiện lấy mình nội dung, file hoặc thực hiện lấy cả 2:\n\n![]({{IMG_227}})\n\n*\t\t\t\tThông tin trả lời của cơ quan phối hợp xử lý*\n\n- Chức năng đồng xử lý ( phối hợp xử lý) đã được hướng dẫn tại mục 4.5. Chức năng đồng xử lý, phối hợp xử lý\n- __Bước 3: __Người dùng nhận thấy đơn phản ánh có thể tự xử lý, thực hiện nhập nội dung xử lý, tải lên file đính kèm (Nếu có). Sau đấy người dùng chọn chức năng __Gửi lời phản ánh__ ![]({{IMG_228}}) để gửi thông tin trả lời đến người dân. Đối với các phản ánh có thực hiện đồng xử lý với các cơ quan ban ngành khác, người dùng thực hiện bước chọn nội\n\n![]({{IMG_229}})\n\n__D. HỆ THỐNG BÁO CÁO, CHỈ ĐẠO ĐIỀU HÀNH__\n\n- Hệ thống phần mềm cho phép các cấp quản lý có thể dễ dàng thống kê theo các tiêu chí khác nhau và hiển thị dưới nhiều dạng biểu đồ.\n- Đối với mục báo cáo, thống kê sẽ thực hiện xem dưới 2 nội dung khác nhau giữa 2 chức vụ:\n- Đối với chỉ đạo điều hành trung ương sẽ thực hiện xem được thông tin xử lý của tất cả các bộ ban ngành, địa phương trên hệ thống.\n- Đối với các cơ quan, ban bộ, địa phương sẽ thực hiện xem thông tin thống kê, báo cáo của chính cơ quan của mình, không thể xem các cơ quan, địa phương khác.\n\n![]({{IMG_230}})\n\n# Thống kê Tình hình tiếp nhận phản ánh:\n\n- Để xem tình hình tiếp nhận phản ánh xem tại biểu đồ: “Tình hình tiếp nhận phản ánh năm 2024” - biểu đồ thể hiện số liệu về __Tổng số lượng phản ánh__ được tiếp nhận và số lượng phản ánh theo từng trạng thái (__Chờ xử lý, Đã chuyển Đơn vị chuyên môn, Đã trả lời__)\n\n![]({{IMG_231}})\n\n# Thống kê theo tỷ lệ phản ánh quá hạn\n\n- Biểu đồ “Tỷ lệ phản ánh quá hạn năm 2024”__ __thể hiện:\n- Tỷ lệ số phản ánh quá hạn/tổng số phản ánh được tiếp nhận\n- Tổng số phản ánh tiếp nhận\n- Số lượng phản ánh quá hạn\n\n![]({{IMG_232}})\n\n- Thêm chú thích cho biểu đồ: Khi phát hiện số liệu bất thường cần giải trình hoặc có điều gì cần lưu ý về số liệu trên biểu đồ, người dùng hãy đưa chuột vào vị trí của biểu đồ cần thêm chú thích và nhấp vào biểu tượng ![]({{IMG_233}}) ở góc trên bên phải của biểu đồ để thêm chú thích.\n\n- Tải biểu đồ về máy dạng file ảnh: người dùng đưa chuột vào biểu đồ cần tải và click vào biểu tượng ![]({{IMG_234}}) sau đó chọn “Xuất ảnh”, biểu đồ sẽ được tải về máy tính dưới dạng file ảnh.\n\n# Thống kê Phản ánh đã xử lý quá hạn:\n\n- Biểu đồ “Tỷ lệ phản ánh đã xử lý quá hạn năm 2024” thể hiện:\n- Tỷ lệ số phản ánh đã xử lý quá hạn/tổng số phản ánh đã xử lý\n-   Tổng số phản ánh đã xử lý\n- Số lượng phản ánh đã xử lý quá hạn\n\n![]({{IMG_235}})\n\n# Thống kê Phản ánh đang xử lý quá hạn:\n\n- Biểu đồ “Tỷ lệ phản ánh đang xử lý quá hạn năm 2024” thể hiện:\n- Tỷ lệ số phản ánh đang xử lý quá hạn/tổng số phản ánh đang xử lý\n- Tổng số phản ánh đang xử lý\n- Số lượng phản ánh đang xử lý quá hạn\n\n ![]({{IMG_236}})\n\n# Thống kê Phản ánh theo tình trạng xử lý\n\n- Biểu đồ “Phản ánh theo tình trạng xử lý năm 2024” thể hiện:\n- Đã xử lý đúng hạn: là số lượng phản ánh được xử lý trong thời gian quy định.\n- Đã xử lý quá hạn: là số lượng phản ánh đã được xử lý nhưng không trong thời gian quy định, tức là quá thời hạn đã đề ra cho việc giải quyết phản ánh đó.\n-   Đang xử lý trong hạn: là số lượng phản ánh hiện tại đang trong quá trình giải quyết và vẫn nằm trong thời gian quy định để hoàn thành.\n-    Đang xử lý quá hạn: là số lượng phản ánh hiện tại đang trong quá trình giải quyết nhưng đã vượt quá thời gian quy định để hoàn thành.\n\n![]({{IMG_237}})\n\n- Ngoài ra biểu đồ có 1 số chức năng:\n-   Lọc dữ liệu theo năm: đưa chuột vào vị trí của biểu đồ sau đó click vào biểu tượng ![]({{IMG_238}}) và chọn năm cần xem dữ liệu bằng cách đánh dấu vào năm tương ứng, biểu đồ sẽ tự động cập nhật số liệu của năm đã chọn.\n- Thêm ghi chú cho biểu đồ\n- Phóng to biểu đồ toàn màn hình: đưa chuột vào vị trí của biểu đồ sau đó click vào biểu tượng ![]({{IMG_239}}) biểu đồ sẽ được xem dưới dạng toàn màn hình\n\n![]({{IMG_240}})\n\n- Để trở về giao điện chính người dùng click vào biểu tượng ![]({{IMG_241}})  ở góc trên bên phải của giao diện biểu đồ.\n\n# Thống kê Xử lý phản ánh theo thời gian\n\n- Biểu đồ “Tỷ lệ xử lý phản ánh theo ngày” thể hiện các số liệu:\n- Tỷ lệ LK tổng đã xử lý/LK tổng tiếp nhận: là tỷ lệ giữa số lượng phản ánh đã xử lý lũy kế đến ngày so với số lượng phản ánh đã tiếp nhận lũy kế đến cùng kỳ.\n-  Tổng số tiếp nhận: là tổng số lượng các phản ánh đã được tiếp nhận trong ngày\n- Tổng số đã xử lý: là tổng số lượng các phản ánh đã được xử lý trong ngày\n- Mục tiêu xử lý: tỷ lệ xử lý phản ánh mong muốn\n\n    ![]({{IMG_242}})\n\n- Lọc xem dữ liệu theo ngày: đưa chuột vào vị trí biểu đồ, chọn biểu tượng![]({{IMG_243}}) , sau đó chọn ngày cần xem dữ liệu, biểu đồ sẽ tự động cập nhật dữ liệu của ngày cần xem:\n\n![]({{IMG_244}})\n\n- Chọn xem dữ liệu theo từng tiêu chí mong muốn bằng cách click chuột vào chú thích trên biểu đồ để bật hoặc tắt hiển thị số liệu đó trên biểu đồ:\n\n![]({{IMG_245}})\n\n- Xem lớp trong biểu đồ: click chuột vào chữ “Xem chi tiết” ở góc dưới biểu đồ\n\n![]({{IMG_246}})\n\n- Sau khi chọn xem chi tiết giao diện sẽ hiển thị lớp trong của biểu đồ\n- Lớp trong bao gồm các biểu đồ thể hiện dữ liệu phản ánh theo Tháng/Quý/Năm\n- Để trở về giao diện ban đầu click chuột vào dấu góc trên bên phải của giao diện.\n\n![]({{IMG_247}})\n\n# Thống kê mức độ hài lòng của người phản ánh\n\n- Biểu đồ “Tỷ lệ mức độ hài lòng của người phản ánh năm 2024” thể hiện số liệu về đánh giá của người phản ánh theo các mức độ:\n- Rất hài lòng\n- Hài lòng\n- Không hài lòng\n\n![]({{IMG_248}})\n\n- Người dùng có thể lọc dữ liệu cần xem theo năm bằng cách chọn vào bộ lọc\n\n# Thống kê tình hình tiếp nhận và xử lý phản ánh theo ban ngành\n\n- Biểu đồ “Tình tình tiếp nhận/xử lý phản ánh theo Ban ngành” thống kê số liệu về số lượng phản ánh tiếp nhận và xử lý của từng Bộ ban ngành. Bao gồm các số liệu về:\n\n+       Tổng số tiếp nhận\n\n+       Tổng số đã xử lý\n\n+       Đang xử lý trong hạn\n\n+       Đang xử lý quá hạn\n\n- Biểu đồ cũng cho phép người dùng lọc dữ liệu theo năm bằng cách chọn vào biểu tượng![]({{IMG_249}})\n\n![]({{IMG_250}})\n\n- Chọn xem dữ liệu theo từng tiêu chí mong muốn bằng cách click chuột vào chú thích trên biểu đồ để bật hoặc tắt hiển thị số liệu đó trên biểu đồ:\n\n![]({{IMG_251}})\n\n#\n\n# Thống kê tình hình tiếp nhận và xử lý phản ánh theo Địa phương\n\n- Biểu đồ “Tình tình tiếp nhận/xử lý phản ánh theo Địa phương” thống kê số liệu về số lượng phản ánh tiếp nhận và xử lý của từng Địa phương. Bao gồm các số liệu về:\n- Tổng số tiếp nhận\n- Tổng số đã xử lý\n-  Đang xử lý trong hạn\n-  Đang xử lý quá hạn\n- Biểu đồ cũng cho phép người dùng lọc dữ liệu theo năm bằng cách chọn vào biểu tượng![]({{IMG_252}})\n\n \t![]({{IMG_253}})\n\n-  Chọn xem dữ liệu theo từng tiêu chí mong muốn bằng cách click chuột vào chú thích trên biểu đồ để bật hoặc tắt hiển thị số liệu đó trên biểu đồ:\n\n![]({{IMG_254}})\n\n# E. **BỘ CÂU HỎI THƯỜNG GẶP (FAQ)** **HỆ THỐNG PHẢN ÁNH, KIẾN NGHỊ VĂN BẢN QPPL**\n# 1. **Tôi có thể tạo phản ánh ở đâu?**  \n   **Trả lời:**\n\nCác cá nhân, tổ chức có thể tạo phản ánh thông qua ứng dụng “Phản ánh, kiến nghị về VBQPPL” trên thiết bị di động (mobile, tablet) hoặc tại website Phản ánh, kiến nghị VBQPPL theo đường link:  \n[https://paknvbqppl.moj.gov.vn/](https://paknvbqppl.moj.gov.vn/)  \nCá nhân, tổ chức cần phải thực hiện đăng nhập hệ thống bằng tài khoản định danh VNeID để có thể thực hiện được chức năng này.\n\n# 2. **Tôi có thể theo dõi tình trạng xử lý của phản ánh mà tôi đã tạo không?**  \n   **Trả lời:**\n\nCá nhân, tổ chức có thể theo dõi thông tin phản ánh đã gửi thông qua mục “Phản ánh của tôi” trên hệ thống.  \nTại đây, người dùng có thể tra cứu danh sách các phản ánh đã gửi, theo dõi chi tiết nội dung phản ánh, tiến trình xử lý, kết quả xử lý cũng như ý kiến phản hồi từ cơ quan, ban ngành có thẩm quyền  \nBên cạnh đó, hệ thống còn hỗ trợ theo dõi tình trạng xử lý phản ánh thông qua ứng dụng di động “Phản ánh, kiến nghị về VBQPPL”. Khi có cập nhật về trạng thái phản ánh, ứng dụng sẽ gửi thông báo kịp thời đến người dùng nhằm bảo đảm tính minh bạch và tiện lợi trong quá trình tương tác.  \nCá nhân, tổ chức cần phải thực hiện đăng nhập hệ thống bằng tài khoản định danh VNeID để có thể thực hiện được chức năng này.\n\n# 3. **Tôi có thể xem danh sách các phản ánh trên hệ thống để tham khảo trước khi gửi phản ánh được không?**  \n   **Trả lời:**\n\nCá nhân, tổ chức có thể truy cập vào mục “Danh sách phản ánh”, tại đây cho phép cá nhân, tổ chức có thể lọc các phản ánh theo: Cấp xử lý, Cơ quan tiếp nhận, Trạng thái.  \nHoặc cho phép nhập mã phản ánh/tên văn bản tại ô tìm kiếm trên thanh menu để tìm kiếm phản ánh, kiến nghị.  \nDanh sách phản ánh, kiến nghị hiển thị các phản ánh đã được xử lý và đang được xử lý. Cá nhân, tổ chức có thể tham khảo trước khi tạo phản ánh.\n\n# 4. **Tôi có thể phản ánh về nội dung gì?**  \n   **Trả lời:**\n\nHệ thống Phản ánh, kiến nghị văn bản quy phạm pháp luật cho phép các cá nhân, tổ chức gửi các kiến nghị, phản ánh về nội dung, vướng mắc, bất cập, mâu thuẩn, không phù hợp… của các văn bản quy phạm pháp luật.\n\n# 5. **Phản ánh của tôi sẽ được xử lý trong bao lâu?**  \n   **Trả lời:**\n\nPhản ánh, kiến nghị của cá nhân, tổ chức sẽ được phản hồi chậm nhất trong thời hạn 15 ngày kể từ ngày tiếp nhận phản ánh, kiến nghị.\n\n# 6. **Phản ánh của tôi có được giữ bí mật không?**  \n   **Trả lời:**\n\nTất cả các thông tin cá nhân của cá nhân, tổ chức gửi phản ánh, kiến nghị đều được bảo mật theo quy định của pháp luật\n\n# 7. **Tôi cần lưu ý gì khi gửi phản ánh?**\n\n   **Trả lời:**\n\n   Những yêu cầu đối với nội dung phản ánh, kiến nghị:\n\n- Được thể hiện bằng ngôn ngữ tiếng Việt, rõ ràng, đơn nghĩa, không viết tắt.  \n- Nội dung phản ánh, kiến nghị phải rõ ràng, chính xác; có đầy đủ thông tin về tên, địa chỉ liên hệ, số điện thoại, địa chỉ thư điện tử của tổ chức, cá nhân gửi phản ánh, kiến nghị.  \n- Không vi phạm quy định về bảo vệ thông tin cá nhân, bảo vệ bí mật nhà nước; không vi phạm pháp luật, đạo đức, thuần phong mỹ tục; không sử dụng từ ngữ mang tính chất xúc phạm, chỉ trích, phê phán, quy chụp hoặc kích động đối với tổ chức, cá nhân.  \n- Không đăng tải nhiều lần phản ánh, kiến nghị, sáng kiến, giải pháp có nội dung giống nhau gây trùng lặp dữ liệu.\n</code></pre><h3>### NGUYÊN TẮC TRẢ LỜI &amp; CƠ CHẾ GUARDRAILS (QUAN TRỌNG):</h3><p>1. NGUYÊN TẮC CHUNG:</p><p>* Trung thành với tài liệu: Mọi hướng dẫn thao tác PHẢI dựa 100% vào nội dung trong phần \"TÀI LIỆU HƯỚNG DẪN SỬ DỤNG\".</p><p>* Xử lý hình ảnh (BẮT BUỘC): Khi hướng dẫn thao tác, nếu tài liệu gốc có hình ảnh minh họa (dạng {{IMG_xxx}}), bạn PHẢI chèn đúng mã ảnh đó vào vị trí tương ứng trong câu trả lời. Ví dụ: \"Nhấn nút Lưu {{IMG_012}}\".</p><p>2. CƠ CHẾ TỪ CHỐI &amp; GIỚI HẠN (GUARDRAILS):</p><p>* NẾU câu hỏi về nội dung pháp luật chuyên sâu: (Ví dụ: \"Luật đất đai quy định thế nào về đền bù?\", \"Nghị định 100 phạt bao nhiêu?\").</p><p>* Hành động: Từ chối lịch sự. Bạn là trợ lý kỹ thuật phần mềm, không phải luật sư hay chuyên viên pháp lý.</p><p>* Mẫu câu trả lời: \"Xin lỗi, tôi là trợ lý hỗ trợ kỹ thuật sử dụng phần mềm. Về nội dung chuyên môn pháp lý của phản ánh, xin vui lòng tham khảo ý kiến của Vụ/Cục chuyên môn hoặc tra cứu trên Cơ sở dữ liệu Quốc gia về Văn bản Pháp luật.\"</p><p>* NẾU câu hỏi về lỗi hệ thống không có trong tài liệu: (Ví dụ: \"Server đang bị sập?\", \"Tại sao tôi không vào được mạng nội bộ?\", \"Lỗi 500 Internal Server Error\").</p><p>* Hành động: Hướng dẫn liên hệ hỗ trợ.</p><p>* Mẫu câu trả lời: \"Vấn đề này có thể liên quan đến hạ tầng kỹ thuật. Đề nghị anh/chị liên hệ bộ phận IT hoặc quản trị viên hệ thống của đơn vị để được hỗ trợ kiểm tra.\"</p><p>* NẾU người dùng hỏi bịa đặt hoặc ngoài lề: (Ví dụ: \"Viết thơ\", \"Dự báo thời tiết\", \"Kể chuyện cười\").</p><p>* Hành động: Từ chối thẳng thắn.</p><p>* Mẫu câu trả lời: \"Tôi chỉ hỗ trợ các vấn đề liên quan đến cách sử dụng Hệ thống Phản ánh Kiến nghị.\"</p>"
+            }
+          ],
+          "agentTools": "",
+          "agentKnowledgeDocumentStores": "",
+          "agentKnowledgeVSEmbeddings": "",
+          "agentEnableMemory": true,
+          "agentMemoryType": "allMessages",
+          "agentUserMessage": "",
+          "agentReturnResponseAs": "userMessage",
+          "agentStructuredOutput": "",
+          "agentUpdateState": "",
+          "agentModelConfig": {
+            "credential": "",
+            "region": "asia-northeast1",
+            "modelName": "gemini-2.5-flash",
+            "customModelName": "",
+            "temperature": 0.9,
+            "allowImageUploads": "",
+            "streaming": true,
+            "maxOutputTokens": "",
+            "topP": "",
+            "topK": "",
+            "thinkingBudget": "",
+            "agentModel": "chatGoogleVertexAI"
+          }
+        },
+        "outputAnchors": [
+          {
+            "id": "agentAgentflow_1-output-agentAgentflow",
+            "label": "Agent",
+            "name": "agentAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 199,
+      "height": 72,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 295.69468199074424,
+        "y": 148.41015097131185
+      }
+    },
+    {
+      "id": "agentAgentflow_2",
+      "position": {
+        "x": 297.00861485704905,
+        "y": 35.1732887983452
+      },
+      "data": {
+        "id": "agentAgentflow_2",
+        "label": "Social",
+        "version": 3.2,
+        "name": "agentAgentflow",
+        "type": "Agent",
+        "color": "#4DD0E1",
+        "baseClasses": [
+          "Agent"
+        ],
+        "category": "Agent Flows",
+        "description": "Dynamically choose and utilize tools during runtime, enabling multi-step reasoning",
+        "inputParams": [
+          {
+            "label": "Model",
+            "name": "agentModel",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "loadConfig": true,
+            "id": "agentAgentflow_2-input-agentModel-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Messages",
+            "name": "agentMessages",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Role",
+                "name": "role",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "System",
+                    "name": "system"
+                  },
+                  {
+                    "label": "Assistant",
+                    "name": "assistant"
+                  },
+                  {
+                    "label": "Developer",
+                    "name": "developer"
+                  },
+                  {
+                    "label": "User",
+                    "name": "user"
+                  }
+                ]
+              },
+              {
+                "label": "Content",
+                "name": "content",
+                "type": "string",
+                "acceptVariable": true,
+                "generateInstruction": true,
+                "rows": 4
+              }
+            ],
+            "id": "agentAgentflow_2-input-agentMessages-array",
+            "display": true
+          },
+          {
+            "label": "OpenAI Built-in Tools",
+            "name": "agentToolsBuiltInOpenAI",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "Web Search",
+                "name": "web_search_preview",
+                "description": "Search the web for the latest information"
+              },
+              {
+                "label": "Code Interpreter",
+                "name": "code_interpreter",
+                "description": "Write and run Python code in a sandboxed environment"
+              },
+              {
+                "label": "Image Generation",
+                "name": "image_generation",
+                "description": "Generate images based on a text prompt"
+              }
+            ],
+            "show": {
+              "agentModel": "chatOpenAI"
+            },
+            "id": "agentAgentflow_2-input-agentToolsBuiltInOpenAI-multiOptions",
+            "display": true
+          },
+          {
+            "label": "Gemini Built-in Tools",
+            "name": "agentToolsBuiltInGemini",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "URL Context",
+                "name": "urlContext",
+                "description": "Extract content from given URLs"
+              },
+              {
+                "label": "Google Search",
+                "name": "googleSearch",
+                "description": "Search real-time web content"
+              },
+              {
+                "label": "Code Execution",
+                "name": "codeExecution",
+                "description": "Write and run Python code in a sandboxed environment"
+              }
+            ],
+            "show": {
+              "agentModel": "chatGoogleGenerativeAI"
+            },
+            "id": "agentAgentflow_2-input-agentToolsBuiltInGemini-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Anthropic Built-in Tools",
+            "name": "agentToolsBuiltInAnthropic",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "Web Search",
+                "name": "web_search_20250305",
+                "description": "Search the web for the latest information"
+              },
+              {
+                "label": "Web Fetch",
+                "name": "web_fetch_20250910",
+                "description": "Retrieve full content from specified web pages"
+              }
+            ],
+            "show": {
+              "agentModel": "chatAnthropic"
+            },
+            "id": "agentAgentflow_2-input-agentToolsBuiltInAnthropic-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Tools",
+            "name": "agentTools",
+            "type": "array",
+            "optional": true,
+            "array": [
+              {
+                "label": "Tool",
+                "name": "agentSelectedTool",
+                "type": "asyncOptions",
+                "loadMethod": "listTools",
+                "loadConfig": true
+              },
+              {
+                "label": "Require Human Input",
+                "name": "agentSelectedToolRequiresHumanInput",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "id": "agentAgentflow_2-input-agentTools-array",
+            "display": true
+          },
+          {
+            "label": "Knowledge (Document Stores)",
+            "name": "agentKnowledgeDocumentStores",
+            "type": "array",
+            "description": "Give your agent context about different document sources. Document stores must be upserted in advance.",
+            "array": [
+              {
+                "label": "Document Store",
+                "name": "documentStore",
+                "type": "asyncOptions",
+                "loadMethod": "listStores"
+              },
+              {
+                "label": "Describe Knowledge",
+                "name": "docStoreDescription",
+                "type": "string",
+                "generateDocStoreDescription": true,
+                "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                "rows": 4
+              },
+              {
+                "label": "Return Source Documents",
+                "name": "returnSourceDocuments",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "optional": true,
+            "id": "agentAgentflow_2-input-agentKnowledgeDocumentStores-array",
+            "display": true
+          },
+          {
+            "label": "Knowledge (Vector Embeddings)",
+            "name": "agentKnowledgeVSEmbeddings",
+            "type": "array",
+            "description": "Give your agent context about different document sources from existing vector stores and embeddings",
+            "array": [
+              {
+                "label": "Vector Store",
+                "name": "vectorStore",
+                "type": "asyncOptions",
+                "loadMethod": "listVectorStores",
+                "loadConfig": true
+              },
+              {
+                "label": "Embedding Model",
+                "name": "embeddingModel",
+                "type": "asyncOptions",
+                "loadMethod": "listEmbeddings",
+                "loadConfig": true
+              },
+              {
+                "label": "Knowledge Name",
+                "name": "knowledgeName",
+                "type": "string",
+                "placeholder": "A short name for the knowledge base, this is useful for the AI to know when and how to search for correct information"
+              },
+              {
+                "label": "Describe Knowledge",
+                "name": "knowledgeDescription",
+                "type": "string",
+                "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                "rows": 4
+              },
+              {
+                "label": "Return Source Documents",
+                "name": "returnSourceDocuments",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "optional": true,
+            "id": "agentAgentflow_2-input-agentKnowledgeVSEmbeddings-array",
+            "display": true
+          },
+          {
+            "label": "Enable Memory",
+            "name": "agentEnableMemory",
+            "type": "boolean",
+            "description": "Enable memory for the conversation thread",
+            "default": true,
+            "optional": true,
+            "id": "agentAgentflow_2-input-agentEnableMemory-boolean",
+            "display": true
+          },
+          {
+            "label": "Memory Type",
+            "name": "agentMemoryType",
+            "type": "options",
+            "options": [
+              {
+                "label": "All Messages",
+                "name": "allMessages",
+                "description": "Retrieve all messages from the conversation"
+              },
+              {
+                "label": "Window Size",
+                "name": "windowSize",
+                "description": "Uses a fixed window size to surface the last N messages"
+              },
+              {
+                "label": "Conversation Summary",
+                "name": "conversationSummary",
+                "description": "Summarizes the whole conversation"
+              },
+              {
+                "label": "Conversation Summary Buffer",
+                "name": "conversationSummaryBuffer",
+                "description": "Summarize conversations once token limit is reached. Default to 2000"
+              }
+            ],
+            "optional": true,
+            "default": "allMessages",
+            "show": {
+              "agentEnableMemory": true
+            },
+            "id": "agentAgentflow_2-input-agentMemoryType-options",
+            "display": true
+          },
+          {
+            "label": "Window Size",
+            "name": "agentMemoryWindowSize",
+            "type": "number",
+            "default": "20",
+            "description": "Uses a fixed window size to surface the last N messages",
+            "show": {
+              "agentMemoryType": "windowSize"
+            },
+            "id": "agentAgentflow_2-input-agentMemoryWindowSize-number",
+            "display": false
+          },
+          {
+            "label": "Max Token Limit",
+            "name": "agentMemoryMaxTokenLimit",
+            "type": "number",
+            "default": "2000",
+            "description": "Summarize conversations once token limit is reached. Default to 2000",
+            "show": {
+              "agentMemoryType": "conversationSummaryBuffer"
+            },
+            "id": "agentAgentflow_2-input-agentMemoryMaxTokenLimit-number",
+            "display": false
+          },
+          {
+            "label": "Input Message",
+            "name": "agentUserMessage",
+            "type": "string",
+            "description": "Add an input message as user message at the end of the conversation",
+            "rows": 4,
+            "optional": true,
+            "acceptVariable": true,
+            "show": {
+              "agentEnableMemory": true
+            },
+            "id": "agentAgentflow_2-input-agentUserMessage-string",
+            "display": true
+          },
+          {
+            "label": "Return Response As",
+            "name": "agentReturnResponseAs",
+            "type": "options",
+            "options": [
+              {
+                "label": "User Message",
+                "name": "userMessage"
+              },
+              {
+                "label": "Assistant Message",
+                "name": "assistantMessage"
+              }
+            ],
+            "default": "userMessage",
+            "id": "agentAgentflow_2-input-agentReturnResponseAs-options",
+            "display": true
+          },
+          {
+            "label": "JSON Structured Output",
+            "name": "agentStructuredOutput",
+            "description": "Instruct the Agent to give output in a JSON structured schema",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "label": "Type",
+                "name": "type",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "String",
+                    "name": "string"
+                  },
+                  {
+                    "label": "String Array",
+                    "name": "stringArray"
+                  },
+                  {
+                    "label": "Number",
+                    "name": "number"
+                  },
+                  {
+                    "label": "Boolean",
+                    "name": "boolean"
+                  },
+                  {
+                    "label": "Enum",
+                    "name": "enum"
+                  },
+                  {
+                    "label": "JSON Array",
+                    "name": "jsonArray"
+                  }
+                ]
+              },
+              {
+                "label": "Enum Values",
+                "name": "enumValues",
+                "type": "string",
+                "placeholder": "value1, value2, value3",
+                "description": "Enum values. Separated by comma",
+                "optional": true,
+                "show": {
+                  "agentStructuredOutput[$index].type": "enum"
+                }
+              },
+              {
+                "label": "JSON Schema",
+                "name": "jsonSchema",
+                "type": "code",
+                "placeholder": "{\n    \"answer\": {\n        \"type\": \"string\",\n        \"description\": \"Value of the answer\"\n    },\n    \"reason\": {\n        \"type\": \"string\",\n        \"description\": \"Reason for the answer\"\n    },\n    \"optional\": {\n        \"type\": \"boolean\"\n    },\n    \"count\": {\n        \"type\": \"number\"\n    },\n    \"children\": {\n        \"type\": \"array\",\n        \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"value\": {\n                    \"type\": \"string\",\n                    \"description\": \"Value of the children's answer\"\n                }\n            }\n        }\n    }\n}",
+                "description": "JSON schema for the structured output",
+                "optional": true,
+                "hideCodeExecute": true,
+                "show": {
+                  "agentStructuredOutput[$index].type": "jsonArray"
+                }
+              },
+              {
+                "label": "Description",
+                "name": "description",
+                "type": "string",
+                "placeholder": "Description of the key"
+              }
+            ],
+            "id": "agentAgentflow_2-input-agentStructuredOutput-array",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "agentUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys"
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "agentAgentflow_2-input-agentUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "agentModel": "chatOpenAI",
+          "agentMessages": [
+            {
+              "role": "system",
+              "content": "<p><strong>Bạn là một chuyên gia hướng dẫn sữ dụng hệ thống : \" HỆ THỐNG PHẢN ÁNH, KIẾN NGHỊ VĂN BẢN QUY PHẠM PHÁP LUẬT\"</strong></p><p>1, Nhiệm vụ của bạn là phản hồi những câu hỏi xã giao thông thường.</p><p>2, Hãy trả lời người dùng một cách lịch sự.</p><p>3, Phong cách và Định dạng</p><p>- Thái độ: Lịch sự, chuyên nghiệp, khiêm tốn</p><p>- Vai trò: Chỉ phản hồi xã giao bình thường, chuyên hỗ trợ sữ dụng hệ thống<br><br>4, CƠ CHẾ TỪ CHỐI &amp; GIỚI HẠN (GUARDRAILS):</p><p>* NẾU câu hỏi về nội dung pháp luật chuyên sâu: (Ví dụ: \"Luật đất đai quy định thế nào về đền bù?\", \"Nghị định 100 phạt bao nhiêu?\").</p><p>* Hành động: Từ chối lịch sự. Bạn là trợ lý kỹ thuật phần mềm, không phải luật sư hay chuyên viên pháp lý.</p><p>* Mẫu câu trả lời: \"Xin lỗi, tôi là trợ lý hỗ trợ kỹ thuật sử dụng phần mềm. Về nội dung chuyên môn pháp lý của phản ánh, xin vui lòng tham khảo ý kiến của Vụ/Cục chuyên môn hoặc tra cứu trên Cơ sở dữ liệu Quốc gia về Văn bản Pháp luật.\"</p><p>* NẾU câu hỏi về lỗi hệ thống không có trong tài liệu: (Ví dụ: \"Server đang bị sập?\", \"Tại sao tôi không vào được mạng nội bộ?\", \"Lỗi 500 Internal Server Error\").</p><p>* Hành động: Hướng dẫn liên hệ hỗ trợ.</p><p>* Mẫu câu trả lời: \"Vấn đề này có thể liên quan đến hạ tầng kỹ thuật. Đề nghị anh/chị liên hệ bộ phận IT hoặc quản trị viên hệ thống của đơn vị để được hỗ trợ kiểm tra.\"</p><p>* NẾU người dùng hỏi bịa đặt hoặc ngoài lề: (Ví dụ: \"Viết thơ\", \"Dự báo thời tiết\", \"Kể chuyện cười\").</p><p>* Hành động: Từ chối thẳng thắn.</p><p>* Mẫu câu trả lời: \"Tôi chỉ hỗ trợ các vấn đề liên quan đến cách sử dụng Hệ thống Phản ánh Kiến nghị.\"</p>"
+            }
+          ],
+          "agentToolsBuiltInOpenAI": "",
+          "agentTools": [],
+          "agentKnowledgeDocumentStores": "",
+          "agentKnowledgeVSEmbeddings": "",
+          "agentEnableMemory": true,
+          "agentMemoryType": "allMessages",
+          "agentUserMessage": "",
+          "agentReturnResponseAs": "userMessage",
+          "agentStructuredOutput": "",
+          "agentUpdateState": "",
+          "agentModelConfig": {
+            "credential": "",
+            "modelName": "gpt-4o-mini",
+            "temperature": 0.9,
+            "streaming": true,
+            "maxTokens": "",
+            "topP": "",
+            "frequencyPenalty": "",
+            "presencePenalty": "",
+            "timeout": "",
+            "strictToolCalling": "",
+            "stopSequence": "",
+            "basepath": "",
+            "proxyUrl": "",
+            "baseOptions": "",
+            "allowImageUploads": "",
+            "imageResolution": "low",
+            "reasoning": "",
+            "reasoningEffort": "",
+            "reasoningSummary": "",
+            "agentModel": "chatOpenAI"
+          }
+        },
+        "outputAnchors": [
+          {
+            "id": "agentAgentflow_2-output-agentAgentflow",
+            "label": "Agent",
+            "name": "agentAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 175,
+      "height": 72,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 297.00861485704905,
+        "y": 35.1732887983452
+      }
+    },
+    {
+      "id": "directReplyAgentflow_0",
+      "position": {
+        "x": 320.03422660872485,
+        "y": 403.8631698777054
+      },
+      "data": {
+        "id": "directReplyAgentflow_0",
+        "label": "Direct Reply 0",
+        "version": 1,
+        "name": "directReplyAgentflow",
+        "type": "DirectReply",
+        "color": "#4DDBBB",
+        "hideOutput": true,
+        "baseClasses": [
+          "DirectReply"
+        ],
+        "category": "Agent Flows",
+        "description": "Directly reply to the user with a message",
+        "inputParams": [
+          {
+            "label": "Message",
+            "name": "directReplyMessage",
+            "type": "string",
+            "rows": 4,
+            "acceptVariable": true,
+            "id": "directReplyAgentflow_0-input-directReplyMessage-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "directReplyMessage": "<p>Câu hỏi này có thể dành cho cả người dân và cán bộ. Để hỗ trợ chính xác nhất, bạn vui lòng xác nhận vai trò của mình:\"</p><p><strong>A. Người dân</strong> (Cần gửi hoặc theo dõi phản ánh)</p><p><strong>B. Cán bộ</strong> (Cần tiếp nhận, xử lý hoặc xem báo cáo)</p>"
+        },
+        "outputAnchors": [],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 163,
+      "height": 66,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 320.03422660872485,
+        "y": 403.8631698777054
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "startAgentflow_0",
+      "sourceHandle": "startAgentflow_0-output-startAgentflow",
+      "target": "conditionAgentAgentflow_0",
+      "targetHandle": "conditionAgentAgentflow_0",
+      "data": {
+        "sourceColor": "#7EE787",
+        "targetColor": "#ff8fab",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "startAgentflow_0-startAgentflow_0-output-startAgentflow-conditionAgentAgentflow_0-conditionAgentAgentflow_0"
+    },
+    {
+      "source": "conditionAgentAgentflow_0",
+      "sourceHandle": "conditionAgentAgentflow_0-output-1",
+      "target": "agentAgentflow_1",
+      "targetHandle": "agentAgentflow_1",
+      "data": {
+        "sourceColor": "#ff8fab",
+        "targetColor": "#4DD0E1",
+        "edgeLabel": "1",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentAgentflow_0-conditionAgentAgentflow_0-output-1-agentAgentflow_1-agentAgentflow_1"
+    },
+    {
+      "source": "conditionAgentAgentflow_0",
+      "sourceHandle": "conditionAgentAgentflow_0-output-2",
+      "target": "agentAgentflow_0",
+      "targetHandle": "agentAgentflow_0",
+      "data": {
+        "sourceColor": "#ff8fab",
+        "targetColor": "#4DD0E1",
+        "edgeLabel": "2",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentAgentflow_0-conditionAgentAgentflow_0-output-2-agentAgentflow_0-agentAgentflow_0"
+    },
+    {
+      "source": "conditionAgentAgentflow_0",
+      "sourceHandle": "conditionAgentAgentflow_0-output-0",
+      "target": "agentAgentflow_2",
+      "targetHandle": "agentAgentflow_2",
+      "data": {
+        "sourceColor": "#ff8fab",
+        "targetColor": "#4DD0E1",
+        "edgeLabel": "0",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentAgentflow_0-conditionAgentAgentflow_0-output-0-agentAgentflow_2-agentAgentflow_2"
+    },
+    {
+      "source": "conditionAgentAgentflow_0",
+      "sourceHandle": "conditionAgentAgentflow_0-output-3",
+      "target": "directReplyAgentflow_0",
+      "targetHandle": "directReplyAgentflow_0",
+      "data": {
+        "sourceColor": "#ff8fab",
+        "targetColor": "#4DDBBB",
+        "edgeLabel": "3",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentAgentflow_0-conditionAgentAgentflow_0-output-3-directReplyAgentflow_0-directReplyAgentflow_0"
+    }
+  ]
+}
